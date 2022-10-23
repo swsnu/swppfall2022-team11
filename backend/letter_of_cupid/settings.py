@@ -29,7 +29,8 @@ DEBUG = 'RENDER' not in os.environ
 ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
+if RENDER_EXTERNAL_HOSTNAME:  # pragma: no cover
+    # For deploying to render.com
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
