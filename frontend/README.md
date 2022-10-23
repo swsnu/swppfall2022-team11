@@ -3,17 +3,17 @@
 ## Installation
 
 ```sh
-yarn
+npm install
 ```
 
 ## Starting Server
 
 ```sh
-yarn start
+npm run start
 ```
 
 ## Testing
 
 ```sh
-yarn test
+npm run test -- --coverage
 ```
