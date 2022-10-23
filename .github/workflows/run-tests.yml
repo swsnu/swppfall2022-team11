@@ -1,4 +1,11 @@
-on: ["push", "pull_request"]
+on:
+  push:
+    branches:
+    - main
+    - 'sprint**'
+  pull_request:
+    branches:
+    - main
 
 name: Run Tests
 
@@ -11,19 +18,22 @@ jobs:
       run:
         working-directory: backend
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
 
     - name: Install Requirements
       run: pip install -r requirements.txt
 
     - name: Run Tests
-      run: python manage.py test
+      run: coverage run manage.py test && coverage lcov
 
     - name: Coveralls
-      uses: AndreMiras/coveralls-python-action@develop
+      uses: coverallsapp/github-action@master
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
+        base-path: ./backend
+        path-to-lcov: ./backend/coverage.lcov
         flag-name: Backend
 
   frontend-test:
@@ -33,10 +43,10 @@ jobs:
       run:
         working-directory: frontend
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: Use Node.js 16.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 16.x
 
@@ -44,7 +54,6 @@ jobs:
       run: |
         npm install
         npm run test -- --coverage
-        cat ./coverage/lcov.info
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
@@ -52,6 +61,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
         path-to-lcov: ./frontend/coverage/lcov.info
+        base-path: ./frontend
         flag-name: Frontend
 
   coveralls_finish:
@@ -59,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
-      uses: AndreMiras/coveralls-python-action@develop
+      uses: coverallsapp/github-action@master
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel-finished: true
