@@ -25,13 +25,15 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run Tests
-      run: python manage.py test
+      run: coverage run manage.py test
 
     - name: Coveralls
       uses: AndreMiras/coveralls-python-action@develop
       with:
         parallel: true
         flag-name: Backend
+        debug: true
+
 
   frontend-test:
     name: Frontend Test
