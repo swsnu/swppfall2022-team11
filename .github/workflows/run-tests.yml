@@ -1,0 +1,62 @@
+on: ["push", "pull_request"]
+
+name: Run Tests
+
+jobs:
+
+  backend-test:
+    name: Backend Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+
+    - name: Install Requirements
+      run: pip install -r requirements.txt
+
+    - name: Run Tests
+      run: python manage.py test
+
+    - name: Coveralls
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel: true
+        flag-name: Backend
+
+  frontend-test:
+    name: Frontend Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: |
+        npm install
+        npm run test -- --coverage && cat coverage/lcov.info | coveralls
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        flag-name: Frontend
+
+  coveralls_finish:
+    needs: [frontend-test, backend-test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel-finished: true
