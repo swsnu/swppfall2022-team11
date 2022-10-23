@@ -28,12 +28,12 @@ jobs:
       run: coverage run manage.py test
 
     - name: Coveralls
-      uses: AndreMiras/coveralls-python-action@develop
+      uses: coverallsapp/github-action@master
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
+        path-to-lcov: ./coverage.lcov
         flag-name: Backend
-        debug: true
-
 
   frontend-test:
     name: Frontend Test
@@ -59,7 +59,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
-        path-to-lcov: ./frontend/coverage/lcov.info
+        path-to-lcov: ./coverage/lcov.info
         flag-name: Frontend
 
   coveralls_finish:
@@ -67,6 +67,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
-      uses: AndreMiras/coveralls-python-action@develop
+      uses: coverallsapp/github-action@master
       with:
         parallel-finished: true
