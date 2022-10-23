@@ -32,6 +32,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
+        base-path: ./backend
         path-to-lcov: ./backend/coverage.lcov
         flag-name: Backend
 
@@ -60,6 +61,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel: true
         path-to-lcov: ./frontend/coverage/lcov.info
+        base-path: ./frontend
         flag-name: Frontend
 
   coveralls_finish:
