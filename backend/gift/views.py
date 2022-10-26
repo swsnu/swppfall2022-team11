@@ -1,4 +1,4 @@
 from django.http import JsonResponse
 
-def index():
+def index(request):
     return JsonResponse({'message': 'GIFT OK'})
