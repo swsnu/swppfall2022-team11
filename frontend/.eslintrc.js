@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    jest: true,
     es2021: true
   },
   extends: [
@@ -11,11 +12,13 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
+    project: './tsconfig.json'
   },
   plugins: [
     'react'
   ],
   rules: {
+    '@typescript-eslint/triple-slash-reference': 'off'
   }
 }
