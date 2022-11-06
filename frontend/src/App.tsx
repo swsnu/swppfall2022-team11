@@ -1,15 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
+import './App.css';
+import{BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
+import MainPage from './Pages/MainPage'
+import CreatePage from './Pages/CreateLetterPage'
+import GiftPage from './Pages/GiftRecommendPage'
+import DecoratePage from './Pages/DecorateLetterPage'
+
 
 function App() {
   return (
-    <div className="bg-white">
-      <div className="mx-auto">
-        <h1 className="text-3xl font-bold underline">
-          Hello World!
-        </h1>
-      </div>
-    </div>
+    <Routes>
+    <Route path='/main' element={<MainPage></MainPage>}>  </Route>  
+    <Route path="/" element={<Navigate replace to={"/main"} />} />
+    <Route path="/create" element={<CreatePage></CreatePage>} > </Route>
+    <Route path="/gift" element={<GiftPage></GiftPage>} > </Route> 
+    <Route path="/decorate" element={<DecoratePage></DecoratePage>} > </Route>   
+    </Routes>
   );
 }
 
