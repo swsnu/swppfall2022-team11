@@ -1,13 +1,13 @@
-export default function GiftPage( ) {
+export default function GiftPage() {
 
-    return (
-        
-        <>
-        <div>
+  return (
+
+    <>
+      <div>
         <h1>This is Gift Recommendation Page</h1>
-        </div>
-        </>
-          )
-    
-    
-    }
+      </div>
+    </>
+  )
+
+
+}

@@ -24,17 +24,17 @@ const fontOPTIONS = [
 
 
 
-function SelectBox(props: { options: any[];defaultValue:number; selecthandler:Function })  {
-    const HandleChange =(e: { target: { value: any; }; })=>{
-     props.selecthandler(e.target.value)
+function SelectBox(props: { options: any[]; defaultValue: number; selecthandler: Function }) {
+    const HandleChange = (e: { target: { value: any; }; }) => {
+        props.selecthandler(e.target.value)
 
 
     };
     return (
         <select onChange={HandleChange}>
             {props.options.map((option) => (
-                <option 
-                    style={{fontFamily:`${option.value}`}}
+                <option
+                    style={{ fontFamily: `${option.value}` }}
                     key={option.value}
                     value={option.value}
                     defaultValue={props.defaultValue}
@@ -46,36 +46,36 @@ function SelectBox(props: { options: any[];defaultValue:number; selecthandler:Fu
     );
 };
 
-export default function DecoratePage( ): React.ReactElement {
+export default function DecoratePage(): React.ReactElement {
     const [fontsize, setfontsize] = useState(10)
     const [fontstyle, setfontstyle] = useState("")
-    const text="편지내용은 여기로"
- 
+    const text = "편지내용은 여기로"
+
     return (
-        
+
         <>
-        <h1>This is Decorate Letter Page</h1>
-        <div>
-        <h2>Choose Background and Font</h2>
-        </div>
-        <h2>Fontsize:{fontsize}</h2>
+            <h1>This is Decorate Letter Page</h1>
+            <div>
+                <h2>Choose Background and Font</h2>
+            </div>
+            <h2>Fontsize:{fontsize}</h2>
 
-        <SelectBox options={OPTIONS} defaultValue={10} selecthandler={setfontsize}></SelectBox>
-        <h2>Fontstyle:{fontstyle}</h2>
+            <SelectBox options={OPTIONS} defaultValue={10} selecthandler={setfontsize}></SelectBox>
+            <h2>Fontstyle:{fontstyle}</h2>
 
-        <SelectBox options={fontOPTIONS} defaultValue={0} selecthandler={setfontstyle}></SelectBox>
+            <SelectBox options={fontOPTIONS} defaultValue={0} selecthandler={setfontstyle}></SelectBox>
 
-        <div>
-            <p 
-            style={{fontSize:`${fontsize}px`, fontFamily:`${fontstyle}`}} >
-         {text}
-         </p>
-        </div>
-        
+            <div>
+                <p
+                    style={{ fontSize: `${fontsize}px`, fontFamily: `${fontstyle}` }} >
+                    {text}
+                </p>
+            </div>
 
-      
+
+
         </>
-          )
-    
-    
-    }
+    )
+
+
+}
