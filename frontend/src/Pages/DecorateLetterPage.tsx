@@ -5,6 +5,7 @@ import "./Decorate.css"
 import { MyDocument } from "../components/Document";
 
 import ReactPDF from '@react-pdf/renderer';
+import Navigation from "../components/Navigation";
 const OPTIONS = [
     { value: 10, name: "10" },
     { value: 12, name: "12" },
@@ -44,7 +45,7 @@ function SelectBox(props: { options: any[]; defaultValue: number; selecthandler:
             ))}
         </select>
     );
-};
+}
 
 export default function DecoratePage(): React.ReactElement {
     const [fontsize, setfontsize] = useState(10)
@@ -54,6 +55,7 @@ export default function DecoratePage(): React.ReactElement {
     return (
 
         <>
+            <Navigation />
             <h1>This is Decorate Letter Page</h1>
             <div>
                 <h2>Choose Background and Font</h2>

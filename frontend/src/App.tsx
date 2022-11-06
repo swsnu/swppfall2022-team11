@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom'
 import MainPage from './Pages/MainPage'
 import CreatePage from './Pages/CreateLetterPage'
