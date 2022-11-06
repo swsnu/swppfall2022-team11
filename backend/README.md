@@ -1,7 +1,5 @@
 # Letter of Cupid Backend
 
-## 
-
 ## Starting Server
 
 ```sh

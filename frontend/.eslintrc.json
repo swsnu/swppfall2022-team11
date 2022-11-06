@@ -1,6 +1,11 @@
 {
     "extends": [
+<<<<<<< HEAD
         "next",
         "next/core-web-vitals"
+=======
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+>>>>>>> a6fd9a37b0850bd0c53dd114848aa73a3c140e2e
     ]
 }
