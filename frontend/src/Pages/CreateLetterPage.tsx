@@ -119,7 +119,7 @@ ${feel} ${voice}로 여자친구에게 보내는 ${letterType} 편지:`,
             </div>
           </>}
           {feel != null && <>
-            <h1 className="mt-5 text-black font-semibold text-2xl">어떤 느낌으로 쓸까요?</h1>
+            <h1 className="mt-5 text-black font-semibold text-2xl">어떤 말투로 쓸까요?</h1>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
                 onClick={() => setVoice('가벼운 말투')}
