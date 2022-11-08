@@ -1,5 +1,8 @@
 import os
 import requests
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def kogpt_api(prompt, max_tokens = 1, temperature = 1.0, top_p = 1.0, n = 1):
@@ -48,5 +51,6 @@ def generate_text(letter_type: str, feel: str, voice: str):
         top_p = .9,
         n = 1
     )
+    logger.error(f"prompt: {prompt} generated_texts: {generated_texts}")
 
     return generated_texts['generations'][0]['text'].split('###')[0]
