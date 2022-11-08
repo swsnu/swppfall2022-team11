@@ -9,7 +9,7 @@ export default function CalendarPage() {
 
         <CalendarAnniversary/>
       <h1>가장 가까운 기념일 : 11월 11일 빼빼로 데이</h1>
-      <div >빼뻬로 데이 D-6일</div>
+      <div >빼뻬로 데이 D-2일</div>
       <a href="/create" className="rounded-xl">지금 편지 쓰러가기</a>
       </>
     )
