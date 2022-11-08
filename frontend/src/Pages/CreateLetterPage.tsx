@@ -19,39 +19,18 @@ export default function CreatePage() {
   const [generatedLetter, setGeneratedLetter] = useState<string>('')
   const onGenerate = () => {
     setIsLoading(true)
-    fetch('https://api.kakaobrain.com/v1/inference/kogpt/generation', {
+    fetch('https://qria-swpp-project.onrender.com/generate', {
       method: 'POST',
       headers: {
-        'Authorization': 'KakaoAK ' + process.env.REACT_APP_KAKAO_API_KEY,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        'prompt': `진중하고 달달한 말투로 여자친구에게 보내는 100일 기념 편지:
-우리가 만난게 엊그제 같은데 벌써 100일이나 됐네?
-처음 너를 봤을 때가 생각나.
-어떻게 저렇게 예쁜 애가 있나? 설레었어.
-너의 그 환한 웃음이 너무 좋았어.
-
-###
-
-진중하고 달달한 말투로 여자친구에게 보내는 100일 기념 편지:
-난 네가 항상 행복했으면 좋겠어.
-네가 웃으면 나는 온 세상을 다 가진 것 같아
-그런  너의 눈에서 눈물이 나지 않게, 마음이 아프지 않게 항생 내가 노력할게.
-날이 갈수록 너와 함께하는 시간이 참 축복 받은 시간이라고 느껴!
-
-###
-
-${feel} ${voice}로 여자친구에게 보내는 ${letterType} 편지:`,
-        'max_tokens': 300,
-        'temperature': 0.7,
-        'top_p': 0.9,
-        'n': 1
-      }),
-    }).then(res => res.json())
+      body: JSON.stringify({ feel, voice, letterType })
+    })
+      .then(res => res.json())
       .then(res => {
+        console.log(res)
         setIsLoading(false)
-        setGeneratedLetter(res['generated_text'].split('###')[0])
+        setGeneratedLetter(res['generatedText'])
       })
   }
 
