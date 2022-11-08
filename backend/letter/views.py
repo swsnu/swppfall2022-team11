@@ -20,7 +20,9 @@ def generate(request):
             voice = json.loads(body)['voice']
         except (KeyError, JSONDecodeError) as e:
             return HttpResponseBadRequest()
-        response_dict = {'generatedText': generate_text(letter_type, feel, voice)}
+        generated_text = generate_text(letter_type, feel, voice)
+        print('generated_text:', generated_text)
+        response_dict = {'generatedText': generated_text}
         return JsonResponse(response_dict, status=200)
     else:
         return HttpResponseNotAllowed(['POST'])
