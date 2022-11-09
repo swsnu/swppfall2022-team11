@@ -198,7 +198,7 @@ ${feel} ${voice}로 여자친구에게 보내는 ${letterType} 편지:`,
             </div>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
-                onClick={() => navigate('/decorate')}
+                onClick={() => navigate('/decorate',{state:{text:generatedLetter}})}
                 className="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-800 hover:border-transparent rounded">
                 편지지 꾸미기
               </button>

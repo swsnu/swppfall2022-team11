@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import "./Decorate.css"
 import { MyDocument } from "../components/Document";
+import { useLocation } from 'react-router-dom';
+
 
 import ReactPDF from '@react-pdf/renderer';
 import Navigation from "../components/Navigation";
@@ -50,7 +52,9 @@ function SelectBox(props: { options: any[]; defaultValue: number; selecthandler:
 export default function DecoratePage(): React.ReactElement {
     const [fontsize, setfontsize] = useState(10)
     const [fontstyle, setfontstyle] = useState("")
-    const text = "편지내용은 여기로"
+    const location = useLocation();
+
+    const text = location.state.text?location.state.text:"편지내용은 여기로"
 
     return (
 
