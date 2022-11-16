@@ -26,19 +26,3 @@ def generate(request):
         return JsonResponse(response_dict, status=200)
     else:
         return HttpResponseNotAllowed(['POST'])
-
-
-@csrf_exempt
-def debug(request):
-    if request.method == 'POST':
-        try:
-            body = request.body.decode()
-            letter_type = json.loads(body)['letterType']
-            feel = json.loads(body)['feel']
-            voice = json.loads(body)['voice']
-        except (KeyError, JSONDecodeError) as e:
-            return HttpResponseBadRequest()
-        response_dict = {'generatedText': 'generatedText', 'letterType': letter_type, 'feel': feel, 'voice': voice}
-        return JsonResponse(response_dict, status=200)
-    else:
-        return HttpResponseNotAllowed(['POST'])
