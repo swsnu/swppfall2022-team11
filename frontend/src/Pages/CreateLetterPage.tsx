@@ -28,7 +28,6 @@ export default function CreatePage() {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         setIsLoading(false)
         setGeneratedLetter(res['generatedText'])
       })
@@ -177,7 +176,7 @@ export default function CreatePage() {
             </div>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
-                onClick={() => navigate('/decorate',{state:{text:generatedLetter}})}
+                onClick={() => navigate('/decorate', { state: { text: generatedLetter } })}
                 className="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-800 hover:border-transparent rounded">
                 편지지 꾸미기
               </button>

@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import GiftRecommendPage from "./GiftRecommendPage"
 
 
-describe("<Dday />", () => {
+describe("<GiftRecommendPage />", () => {
     it("should render without errors", () => {
         render(<GiftRecommendPage />);
     })
