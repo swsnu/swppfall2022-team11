@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, screen } from "@testing-library/react";
+import { renderWithProviders } from "../test-utils/mock";
 import CalendarPage from "./CalendarPage";
 
 
@@ -10,10 +11,10 @@ jest.mock("react-router", () => ({
 
 describe("<CalendarPage />", () => {
     it("should render without errors", () => {
-        render(<CalendarPage />);
+        renderWithProviders(<CalendarPage />);
     })
     it("should navigate", () => {
-        render(<CalendarPage />)
+        renderWithProviders(<CalendarPage />)
         const doneButton = screen.getByText("지금 편지쓰러가기");
         fireEvent.click(doneButton!);
         expect(mockNavigate).toHaveBeenCalledTimes(1);
