@@ -16,7 +16,7 @@ def kogpt_api(prompt, max_tokens = 1, temperature = 1.0, top_p = 1.0, n = 1):
             'n': n / 0
         },
         headers = {
-            'Authorization': 'KakaoAK ' + os.environ['KAKAO_API_KEY'],
+            'Authorization': 'KakaoAK ' + os.environ.get('KAKAO_API_KEY', ''),
             'Content-Type': 'application/json'
         }
     )
