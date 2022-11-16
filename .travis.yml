@@ -1,0 +1,28 @@
+dist: bionic
+
+jobs:
+  include:
+    - language: python
+      python: "3.9"
+      install:
+        - cd backend
+        - pip install -r requirements.txt
+      script:
+        - pylint **/*.py
+        - coverage run --source='.' manage.py test
+        - coverage xml
+
+    - language: node_js
+      node_js: "14"
+      addons:
+        sonarcloud:
+          organization: "swsnu"
+          token:
+            secure: "XrDiE8V7L+0xwOleadwRR3MfwdEUtOvCdTk8HJIvPxgAh2HhZMhnpvHshzIGfongETeirgNmNmO1ASLhvZxbJ2iKbkCao4rVVrrKnvQF6CzLruY5eR4UR6sIM43qGJZrfkD85tOL/mRIvuTYFMwMIuOhx+a+zVCCqjHhhHpsA/Cgf2CkSHSJ45R1G/bsHy9/uLBooYHEKN7gNPVXFsDcBxoAOXOrXZVmMB/fIOhE5sZtb55Z4mK/lqJ+/ZHUqnBS/ZMewzB0WlrKKBT/Ao8blmcVgkkr6zzHDh1Y8HX8EvEKlCypSMI1Hi1dzE97kQfpHLtpiY99o3GLzmU9IRr1zziBNYqCJFYLUl4PqM7nSGoSR3jTpOGG84II/TtW2RSG6RuVxfPEnUaatHN1htoijwLa0yUiAbraBR7313S0Sy97XBMh6jXAkIP1cCfl2MKVySgtJ9Yvooup5JybfqUWh0UlmSURz2bpHeOckxw/L/E3BtGpYERK4U9+uNvJ7ZHjfJVO+lgNOfFP0y3YL88BYbO3NgER3kLS25xXIboJcC0AS6FlRjDqS5h2BB99ch8a8ZP7ulWGrk6giHPq4qc017TVAtMPKrAxtCHn4Ppz3frAVURMuejSSs/1uaoyG0IFxuC/kCc7OLnyF5lHNE0K4Q9PmM3a+NYXjFJ2XUFYOe8="
+      install:
+        - cd frontend
+        - npm install
+      script:
+        - ./node_modules/.bin/eslint src
+        - npm run test -- --coverage --watchAll=false
+        - cd .. && sonar-scanner

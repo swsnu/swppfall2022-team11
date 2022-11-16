@@ -98,7 +98,7 @@ export default function CreatePage() {
             </div>
           </>}
           {feel != null && <>
-            <h1 className="mt-5 text-black font-semibold text-2xl">어떤 느낌으로 쓸까요?</h1>
+            <h1 className="mt-5 text-black font-semibold text-2xl">어떤 말투로 쓸까요?</h1>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
                 onClick={() => setVoice('가벼운 말투')}
@@ -177,7 +177,7 @@ export default function CreatePage() {
             </div>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
-                onClick={() => navigate('/decorate')}
+                onClick={() => navigate('/decorate',{state:{text:generatedLetter}})}
                 className="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-800 hover:border-transparent rounded">
                 편지지 꾸미기
               </button>
