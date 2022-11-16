@@ -24,8 +24,8 @@ export default function CalendarPage() {
 
       <CalendarAnniversary />
       <div>
-        {eventState.events.map((event) => {
-          return <Event title={event.title} date={event.date} />
+        {eventState.events.map((event, index) => {
+          return <Event key={index} title={event.title} date={event.date} />
         })}
       </div>
       <button onClick={() => navigate("/create")}>지금 편지쓰러가기</button>

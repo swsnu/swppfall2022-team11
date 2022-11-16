@@ -1,6 +1,6 @@
 import { AnyAction, configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ThunkMiddleware } from "redux-thunk";
+import thunk, { ThunkMiddleware } from "redux-thunk";
 import reducer, { EventState } from "./event";
 import { fetchEvents, fetchEvent, postEvent, deleteEvent } from "./event";
 describe("event reducer", () => {
@@ -21,7 +21,7 @@ describe("event reducer", () => {
     };
 
     beforeAll(() => {
-        store = configureStore({ reducer: { event: reducer } });
+        store = configureStore({ reducer: { event: reducer }, middleware: [thunk] as [ThunkMiddleware]});
     });
     it("should handle initial state", () => {
         expect(reducer(undefined, { type: "unknown" })).toEqual({
