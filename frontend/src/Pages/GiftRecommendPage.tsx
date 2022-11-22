@@ -5,13 +5,6 @@ import { AppDispatch } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-interface IProps {
-  id: number;
-  name: string;
-  price: number;
-  link: string;
-  img: string;
-}
 
 const GiftRecommendPage = () => {
   const giftState = useSelector(selectGift);
@@ -21,16 +14,14 @@ const GiftRecommendPage = () => {
     dispatch(fetchGifts());
   }, []);
 
-
-
   return (
     <>
       <Navigation />
       <div>
         <h1>This is Gift Recommendation Page</h1>
-        {giftState.gifts.map((data) => {
+        {giftState.gifts.map((data, index) => {
           return (
-            <Gift {...data} />
+            <Gift key={index} {...data} />
           )
         })}
       </div>
