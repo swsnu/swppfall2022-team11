@@ -6,7 +6,8 @@ interface IProps {
 const Event = (props: IProps) => {
     const today = new (Date);
 
-    const diff = today.getDate() - props.date.getDate();
+    const diff = today.getTime() - props.date.getTime();
+    const result = Math.ceil(diff / (1000 * 60 * 60 * 24))
     if (diff >= 0) {
         return (
             <div>
@@ -18,7 +19,7 @@ const Event = (props: IProps) => {
     else {
         return (
             <div>
-                <div>D{diff}</div>
+                <div>D{result}</div>
                 <div>{props.title}</div>
             </div>
         );
