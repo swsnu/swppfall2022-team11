@@ -23,7 +23,8 @@ export default function MainPage() {
               AI로 감동적인 연애편지를 써보세요.
             </p>
           </div>
-          <a href="/login" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
+          <a href="/login" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">로그인하기</a>
+          <a href="/register" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
         </div>
       </main>
     </>

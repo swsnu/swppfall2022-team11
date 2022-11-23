@@ -2,10 +2,8 @@ import React from "react";
 import { useState } from "react";
 import "./Decorate.css"
 import { useLocation } from 'react-router-dom';
-<<<<<<< HEAD
-import { Page, Text, View, Document, StyleSheet,PDFViewer,Font } from '@react-pdf/renderer';
 
-import ReactPDF from '@react-pdf/renderer';
+
 import Navigation from "../components/Navigation";
 import { autocompleteClasses } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -49,18 +47,7 @@ function SelectBox(props: { options: any[]; defaultValue: number; selecthandler:
         </select>
     );
 }
-const styles = StyleSheet.create({
-    page: {
-      flexDirection: 'row',
-      backgroundColor: '#E4E4E4'
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1
-    }
-  
-  });
+
 export default function DecoratePage(): React.ReactElement {
     const [fontsize, setfontsize] = useState(20)
     const [fontstyle, setfontstyle] = useState("")
@@ -117,15 +104,7 @@ export default function DecoratePage(): React.ReactElement {
         <Navigation />
         <div className="full" style={{ width:500,backgroundColor:"white" ,margin:"auto"}}>
         <h1 style={{fontSize:30, color:"", fontFamily:"Kkomi", margin:30, textAlign:"center"}}>미리보기에요</h1>
-        <PDFViewer>
-        <Document>
-        <Page size="A4" style={styles.page}>
-            <View style={styles.section}>
-                <Text  style={{ fontSize: `${fontsize}px`, fontFamily:'Pak_Yong_jun' }}>{text}</Text>
-            </View>
-            </Page>
-        </Document>
-        </PDFViewer>
+      
         <div className="btn-group" >
         <button onClick={()=>showPreview()}>Preview</button>
         <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
@@ -140,12 +119,4 @@ export default function DecoratePage(): React.ReactElement {
     
 
 
-=======
-import Navigation from "../components/Navigation";
-export default function DecoratePage(): React.ReactElement {
-    return (
-        <>
-        </>
-    )
->>>>>>> d15bea4c3758b9140699a6ac64d853457fc8b771
 }
