@@ -5,6 +5,7 @@ import CreatePage from './Pages/CreateLetterPage'
 import GiftPage from './Pages/GiftRecommendPage'
 import DecoratePage from './Pages/DecorateLetterPage'
 import CalendarPage from './Pages/CalendarPage';
+import LoginPage from './Pages/LoginPage';
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
       <Route path="/create" element={<CreatePage></CreatePage>} > </Route>
       <Route path="/gift" element={<GiftPage></GiftPage>} > </Route>
       <Route path="/decorate" element={<DecoratePage></DecoratePage>} > </Route>
+      <Route path="/login" element={<LoginPage></LoginPage>} > </Route>
+
     </Routes>
   );
 }

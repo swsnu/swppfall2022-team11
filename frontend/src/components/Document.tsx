@@ -12,12 +12,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export const MyDocument = (props: { text: string }) => (
-  <Document>
+export const MyDocument = (props: { text: string }) => {
+
+  return(<Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text>{props.text}</Text>
       </View>
     </Page>
-  </Document>
-);
+  </Document>)
+};
