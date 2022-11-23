@@ -1,7 +1,7 @@
 import Navigation from "../components/Navigation";
 
-export default function GiftPage() {
 
+const GiftRecommendPage = () => {
   return (
     <>
       <Navigation />
@@ -11,3 +11,5 @@ export default function GiftPage() {
     </>
   )
 }
+
+export default GiftRecommendPage

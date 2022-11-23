@@ -1,9 +1,8 @@
-import { fontFamily } from "@mui/system";
 import React from "react";
 import { useState } from "react";
 import "./Decorate.css"
-import { MyDocument } from "../components/Document";
 import { useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 import { Page, Text, View, Document, StyleSheet,PDFViewer,Font } from '@react-pdf/renderer';
 
 import ReactPDF from '@react-pdf/renderer';
@@ -141,4 +140,12 @@ export default function DecoratePage(): React.ReactElement {
     
 
 
+=======
+import Navigation from "../components/Navigation";
+export default function DecoratePage(): React.ReactElement {
+    return (
+        <>
+        </>
+    )
+>>>>>>> d15bea4c3758b9140699a6ac64d853457fc8b771
 }
