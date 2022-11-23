@@ -15,21 +15,13 @@ export interface GiftState {
     selectedGift: GiftType | null;
 }
 
-const data1 = {
-    id: 0,
-    name: "아이폰13",
-    price: 814000,
-    link: "https://search.shopping.naver.com/catalog/29030650586?query=%EC%95%84%EC%9D%B4%ED%8F%B0&NaPm=ct%3Dlas95olc%7Cci%3D2e64604169e3195b6eb0313957707e46d71d6c3b%7Ctr%3Dslsl%7Csn%3D95694%7Chk%3D39700fc049eeef00b04a43ee63539f0de06a5af2",
-    img: "https://shopping-phinf.pstatic.net/main_2903065/29030650586.20220317113150.jpg?type=f640"
-}
-
 const initialState: GiftState = {
-    gifts: [data1],
+    gifts: [],
     selectedGift: null,
 }
 
 export const fetchGifts = createAsyncThunk("todo/fetchGifts", async () => {
-    const response = await axios.get<GiftType[]>("/api/gift/");
+    const response = await axios.get<GiftType[]>("/gift/");
     return response.data;
 }
 );
