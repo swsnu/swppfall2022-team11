@@ -1,6 +1,6 @@
 import Navigation from "../components/Navigation";
 import "./LoginPage.css"
-export default function MainPage() {
+export default function LoginPage() {
   return (
     <>
       <Navigation />
@@ -25,7 +25,7 @@ export default function MainPage() {
           <div className="container">
             <div>
               <div className="inputs"> 
-                <input type="text" placeholder="Enter Username" name="uname" required></input>
+                <input type="text" placeholder="Enter Email" name="email" required></input>
               </div>  
               <div className="inputs"> 
                 <input type="password" placeholder="Enter Password" name="psw" required></input>
