@@ -1,6 +1,50 @@
 import Navigation from "../components/NavNotAuth";
 import "./LoginPage.css"
+import { useDispatch, useSelector } from "react-redux"
+import { useRef,useState } from "react";
+import { AppDispatch } from "..";
+import {useNavigate } from "react-router-dom";
+import {
+  login
+} from "../store/slices/user";
+import Axios from "axios";
+Axios.defaults.xsrfCookieName = 'csrftoken';
+Axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+
 export default function LoginPage() {
+ 
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const pwInputRef = useRef<HTMLInputElement>(null); 
+  
+ 
+  const dispatch = useDispatch<AppDispatch>();
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const navigate=useNavigate();
+  const submitHandler = async () => {
+
+  
+    const enteredemail = emailInputRef.current!.value;
+    const enteredpw= pwInputRef.current!.value;
+    
+
+
+    if(enteredemail!=null&&enteredpw!=null) {
+          setSubmitted(true);
+          const response = await Axios.post("/user/login/",{"email":enteredemail,"password":enteredpw} 
+     
+        );
+          console.log("!!!")
+          if(response.status==204){
+            dispatch(login({"email":enteredemail,"password":enteredpw}))
+            navigate('/userpage',{replace:true});
+          }
+          else{
+           
+        alert('Email or password is wrong')
+    }
+  }
+};
   return (
     <>
       <Navigation />
@@ -25,15 +69,15 @@ export default function LoginPage() {
           <div className="container">
             <div>
               <div className="inputs"> 
-                <input type="text" placeholder="Enter Email" name="email" required></input>
+                <input type="text" placeholder="Enter Email" name="email" required ref={emailInputRef}></input>
               </div>  
               <div className="inputs"> 
-                <input type="password" placeholder="Enter Password" name="psw" required></input>
+                <input type="password" placeholder="Enter Password" name="psw" required ref={pwInputRef}></input>
                 </div> 
             </div>
           </div>
             <div className="button">
-             <button type="submit">Login</button>
+             <button type="submit" onClick={()=>submitHandler()}>Login</button>
             </div>
         </div>
           

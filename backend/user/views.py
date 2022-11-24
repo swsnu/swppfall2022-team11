@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 
 
-
+@csrf_exempt      
 def register(request):
     if request.method == 'POST':
         try:
@@ -38,6 +38,7 @@ def register(request):
             return HttpResponseBadRequest()
     else:
         return HttpResponseNotAllowed(['POST'])
+@csrf_exempt       
 def login(request):
     if request.method == 'POST':
         try:
@@ -53,10 +54,10 @@ def login(request):
                 
                 return HttpResponse(status=401)
         except Exception  as e:
-           
             return HttpResponse(status=400)
     else:
         return HttpResponseNotAllowed(['POST'])    
+@csrf_exempt       
 def logout(request):
     if request.method == 'GET':
         if request.user.is_authenticated==True:
@@ -65,7 +66,8 @@ def logout(request):
         else:
             return HttpResponse(status=401)
     else:
-        return HttpResponseNotAllowed(['GET'])            
+        return HttpResponseNotAllowed(['GET'])
+@csrf_exempt                           
 def info(request):
     if request.user.is_authenticated==False:
         return HttpResponse(status=401)
@@ -74,7 +76,7 @@ def info(request):
        Anniv_list = [{"name":Anniv.name,"date":Anniv.date,"letter":Anniv.letter ,"gift": Anniv.gift } for Anniv in user.Annivlist.all()]     
        Info={"name":user.first_name, "lovername":user.info.lovername,"lovernickname":user.info.lovernickname}
        response={"Annivlist":Anniv_list,"fullinfo":Info}
-       return JsonResponse(response,safe=False)  
+       return JsonResponse(response,safe=False,status=200)  
     if request.method == 'PUT':
         body=json.loads(request.body.decode())
         name=body["name"]
@@ -85,12 +87,7 @@ def info(request):
         anniv.gift=gift
         anniv.save()
         return HttpResponse(status=200) 
-    if request.method == 'DELETE':
-        body=json.loads(request.body.decode())
-        name=body["name"]
-        anniv = Anniversary.objects.filter(user=user,name=name).first()
-        anniv.delete()
-        return HttpResponse(status=200)        
+            
     if request.method == 'POST':
         body=json.loads(request.body.decode())
         name=body["name"]
@@ -100,6 +97,15 @@ def info(request):
         anniv=Anniversary(user=user,name=name,date=date,letter=letter,gift=gift)
         anniv.save()
         return HttpResponse(status=200)
+@csrf_exempt              
+def delete(request,name):
+    if request.method == 'DELETE':
+        body=json.loads(request.body.decode())
+        user = User.objects.get(username=request.user.username) 
+        anniv = Anniversary.objects.filter(user=user,name=name).first()
+        anniv.delete()
+        return HttpResponse(status=200)      
+
 
 @ensure_csrf_cookie
 def token(request):

@@ -1,13 +1,53 @@
 import Navigation from "../components/NavNotAuth";
 import "./LoginPage.css"
-
-import React, { useState } from 'react'
+import { useDispatch, useSelector } from "react-redux"
+import { useRef,useState } from "react";
+import { AppDispatch } from "..";
+import {useNavigate } from "react-router-dom";
+import React from 'react'
 import Calendar from "./CalendarPage"
+import Axios from "axios";
+import {
+  UserActions
+} from "../store/slices/user";
 export default function RegisterPage() {
+
    
-    const [value, onChange] = useState(new Date());
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const pwInputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const lovernameInputRef = useRef<HTMLInputElement>(null); 
+  const lovernicknameInputRef = useRef<HTMLInputElement>(null);
  
- 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const navigate=useNavigate();
+  const submitHandler = async () => {
+
+  
+    const enteredemail = emailInputRef.current!.value;
+    const enteredpw= pwInputRef.current!.value;
+    const enteredname= nameInputRef.current!.value;
+    const enteredln= lovernameInputRef.current!.value;
+    const enterednn= lovernicknameInputRef.current!.value;
+
+    if(enteredemail!=null&&enteredpw!=null) {
+    
+          const response = await Axios.post("/user/register/",{"email":enteredemail,"password":enteredpw,"username":enteredname,
+          "lovername":enteredln,"lovernickname":enterednn,"Anniversary":[]} 
+        );
+          console.log("!!!")
+          if(response.status==201){
+            alert("회원가입이 완료되었습니다");
+            navigate('/userpage',{replace:true});
+          }
+          else{
+            alert("잘못된시도");       
+
+    }
+  }
+};
+
     
   return (
     <>
@@ -30,20 +70,20 @@ export default function RegisterPage() {
             </h1>
             
           </div>
-          <form id="regForm" action="/action_page.php">
+          <form id="regForm">
          
 
             <div className="text-gray-200 font-semibold">당신의 이름을 알려주세요:
-    <p><input placeholder="이름" name="fname"></input></p>
+    <p><input placeholder="이름" name="fname" ref={nameInputRef}></input></p>
  
   </div>
   <div className="text-gray-200 font-semibold">사용할 이메일과 비밀번호:
-    <p><input placeholder="E-mail..."  name="email"></input></p>
-    <p><input placeholder="Password" name="pwd"></input></p>
+    <p><input placeholder="E-mail..."  name="email" ref={emailInputRef}></input></p>
+    <p><input placeholder="Password" name="pwd" ref={pwInputRef}></input></p>
   </div>
   <div className="text-gray-200 font-semibold">연인에 대해 알려주새요:
-    <p><input placeholder="연인의 이름" name="dd"></input></p>
-    <p><input placeholder="애칭이나 호칭" name="nn"></input></p>
+    <p><input placeholder="연인의 이름" name="dd" ref={lovernameInputRef}></input></p>
+    <p><input placeholder="애칭이나 호칭" name="nn" ref={lovernicknameInputRef}></input></p>
     
   </div>
   <div className="text-gray-200 font-semibold">기념일등록하기:
@@ -54,7 +94,7 @@ export default function RegisterPage() {
   </div>
   
             <div className="button text-center">
-             <button type="submit">가입하기</button>
+             <button type="submit" onClick={()=>submitHandler()}>가입하기</button>
             </div>
 </form>
          

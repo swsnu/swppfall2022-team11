@@ -7883,6 +7883,11 @@
     "indent-string" "^4.0.0"
     "strip-indent" "^3.0.0"
 
+"redux-csrf@^1.1.0":
+  "integrity" "sha512-NZKg0+cVQK337uAe1bdlG+vVKpdcxU364Syb+1e4CCxGvh7DPbjNoTqAAcZAHTKlHWz4g6M959I9yQAyWaU0JA=="
+  "resolved" "https://registry.npmjs.org/redux-csrf/-/redux-csrf-1.1.0.tgz"
+  "version" "1.1.0"
+
 "redux-thunk@^2.4.2":
   "integrity" "sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q=="
   "resolved" "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.4.2.tgz"

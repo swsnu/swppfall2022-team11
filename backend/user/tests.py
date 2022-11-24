@@ -87,7 +87,7 @@ class UserTestCase(TestCase):
         response = client.put('/user/info/', json.dumps({'name': 'christmas', 'date': '2022-12-25','letter':"True",'gift':"False"}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken) 
         self.assertEqual(response.status_code, 200) 
-        response = client.delete('/user/info/', json.dumps({'name': 'christmas'}),
+        response = client.delete('/user/delete/chritsmas',
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken) 
         self.assertEqual(response.status_code, 200)                       
     

@@ -2,7 +2,9 @@ import Navigation from "../components/Navigation";
 import "./Personal.css"
 
 function FlipCard(props:{name: string}){
-
+    
+    
+    
     return(
     <>
     <div className="flip-card">
