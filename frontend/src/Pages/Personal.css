@@ -29,12 +29,12 @@
   }
   
   .flip-card-front {
-    background-color: #bbb;
+    background-color: white;
     color: black;
+    
   }
   
   .flip-card-back {
-    
     justify-content: center;
     background-color: #bbb;
     color: white;
@@ -44,4 +44,21 @@
   .list{
     display: flex;
     flex-direction: row;
+  }
+
+  .backgroundimage{
+  opacity: 0.6;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: 100%;
+
+   
+  }
+
+  .cardcontent{
+
+    position: relative;
+
   }

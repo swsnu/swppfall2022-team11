@@ -19,8 +19,8 @@ export default function CalendarPage() {
 
   return (
     <>
-      <Navigation />
-      <h1 className="text-black font-semibold text-2xl">다가오는 기념일</h1>
+    
+
 
       <CalendarAnniversary />
       <div>
@@ -28,7 +28,7 @@ export default function CalendarPage() {
           return <Event key={index} title={event.title} date={event.date} />
         })}
       </div>
-      <button onClick={() => navigate("/create")}>지금 편지쓰러가기</button>
+      <button onClick={() => navigate("/create")}>지정하기</button>
     </>
   )
 }

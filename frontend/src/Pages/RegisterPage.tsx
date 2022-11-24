@@ -1,7 +1,8 @@
-import Navigation from "../components/Navigation";
+import Navigation from "../components/NavNotAuth";
 import "./LoginPage.css"
-import Calendar from 'react-calendar';
+
 import React, { useState } from 'react'
+import Calendar from "./CalendarPage"
 export default function RegisterPage() {
    
     const [value, onChange] = useState(new Date());
@@ -10,7 +11,7 @@ export default function RegisterPage() {
     
   return (
     <>
-     
+      <Navigation></Navigation>
       <main className="relative w-full h-full">
         <div className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
@@ -47,7 +48,7 @@ export default function RegisterPage() {
   </div>
   <div className="text-gray-200 font-semibold">기념일등록하기:
   <div>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar />
     </div>
    
   </div>

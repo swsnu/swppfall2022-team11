@@ -6,11 +6,14 @@ interface IProps {
 const Event = (props: IProps) => {
     const today = new (Date);
 
-    const diff = today.getDate() - props.date.getDate();
+    const diffdate = today.getTime() - props.date.getTime();
+    const diff=Math.trunc(diffdate/(1000*60*60*24));
+  
+
     if (diff >= 0) {
         return (
             <div>
-                <div>D+{diff}</div>
+                <div>D+{diff+1}</div>
                 <div>{props.title}</div>
             </div>
         )
@@ -18,7 +21,7 @@ const Event = (props: IProps) => {
     else {
         return (
             <div>
-                <div>D{diff}</div>
+                <div>D{diff-1}</div>
                 <div>{props.title}</div>
             </div>
         );

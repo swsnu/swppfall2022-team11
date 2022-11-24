@@ -1,4 +1,4 @@
-import Navigation from "../components/Navigation";
+import Navigation from "../components/NavNotAuth";
 import "./LoginPage.css"
 export default function LoginPage() {
   return (
