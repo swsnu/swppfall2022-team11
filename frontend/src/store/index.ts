@@ -2,10 +2,11 @@ import { configureStore, ThunkMiddleware } from "@reduxjs/toolkit"
 import thunk from 'redux-thunk'
 import eventReducer from "./slices/event"
 import giftReducer from "./slices/gift"
-
+import userReducer from "./slices/user"
 export const store = configureStore({
     reducer: {
-        event: eventReducer,
+        event: eventReducer
+    
         gift: giftReducer,
     },
 

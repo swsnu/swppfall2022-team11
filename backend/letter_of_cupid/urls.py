@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('gift/', include('gift.urls')),
     path('', include('letter.urls')),
+    path('user/', include('user.urls')),
+
 ]

@@ -2,3 +2,74 @@
   font-family: "Pak_Yong_jun";
   src: url("../../assets/fonts/Pak_Yong_jun.ttf");
 }
+
+@font-face {
+  font-family: "Kkomi";
+  src: url("../../assets/fonts/KNPSKkomi.ttf");
+}
+
+@font-face {
+  font-family: "kotra-son";
+  src: url("../../assets/fonts/KOTRA_SONGEULSSI.ttf");
+}
+
+@font-face {
+  font-family: "ACC_chilren";
+  src: url("../../assets/fonts/ACC어린이마음고운체.ttf");
+}
+
+.textheader{
+  font-size: 20px;
+  font-family: "KKomi";
+  display: flex;
+  justify-content: center;
+
+
+}
+.choose-bar{
+
+  padding: 20px;
+  display: flex;
+  
+}
+
+.btn-group{
+
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+.btn-group button {
+  display: flex;
+  justify-content: center;
+ 
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+.letterview-component{
+  display: flex;
+  justify-content: center;
+  height:80%;
+}
