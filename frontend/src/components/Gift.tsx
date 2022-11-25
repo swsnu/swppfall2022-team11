@@ -16,6 +16,8 @@ const Gift = (props: IProps) => {
                     <img src={props.img}></img>
                     <p>{props.name}</p>
                     <p className='price'>{props.price}원</p>
+                    <button>좋아요</button>
+                    <p>좋아요수 : 0</p>
                 </a>
             </div>
         </div>
