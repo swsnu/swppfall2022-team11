@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import CalendarAnniversary from "../components/CalendarAnniversary";
 import Event from "../components/Event";
-import Navigation from "../components/Navigation";
 import { AppDispatch } from "../store"
 import { fetchEvents, selectEvent } from "../store/slices/event";
 
@@ -19,9 +18,6 @@ export default function CalendarPage() {
 
   return (
     <>
-    
-
-
       <CalendarAnniversary />
       <div>
         {eventState.events.map((event, index) => {

@@ -14,7 +14,6 @@ const GiftRecommendPage = () => {
   useEffect(() => {
     dispatch(fetchGifts());
   }, []);
-  console.log(searchPrice)
 
   return (
     <>
@@ -48,7 +47,7 @@ const GiftRecommendPage = () => {
               return data
             }
           }
-          else if(searchPrice==4){
+          else {
             if (data.price>100000){
               return data
             }

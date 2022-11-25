@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router";
 import Gift from "../components/Gift";
@@ -32,7 +32,42 @@ const stubInitialState: GiftState = {
         {
             id: 0,
             name: "갤럭시중고",
+            price: 10000,
+            link: "https://www.naver.com",
+            img: "https://via.placeholder.com/100"
+        },
+        {
+            id: 0,
+            name: "갤럭시중고",
             price: 50000,
+            link: "https://www.naver.com",
+            img: "https://via.placeholder.com/100"
+        },
+        {
+            id: 0,
+            name: "갤럭시중고",
+            price: 35000,
+            link: "https://www.naver.com",
+            img: "https://via.placeholder.com/100"
+        },
+        {
+            id: 0,
+            name: "갤럭시중고",
+            price: 99000,
+            link: "https://www.naver.com",
+            img: "https://via.placeholder.com/100"
+        },
+        {
+            id: 0,
+            name: "갤럭시중고",
+            price: 11000000,
+            link: "https://www.naver.com",
+            img: "https://via.placeholder.com/100"
+        },
+        {
+            id: 0,
+            name: "갤럭시중고",
+            price: 1000000,
             link: "https://www.naver.com",
             img: "https://via.placeholder.com/100"
         }
@@ -70,5 +105,20 @@ describe("<GiftRecommendPage />", () => {
     it("should render GiftRecommendPage", () => {
         const { container } = render(giftRecommendPage);
         expect(container).toBeTruthy()
+    })
+    it("should search button", () => {
+        render(giftRecommendPage);
+        const searchButton = screen.getByText("전체보기")
+        fireEvent.click(searchButton!);
+        const searchButton1 = screen.getByText("~3만원")
+        fireEvent.click(searchButton1!);
+        const searchButton2 = screen.getByText("3만원~5만원")
+        fireEvent.click(searchButton2!);
+        const searchButton3 = screen.getByText("5만원~10만원")
+        fireEvent.click(searchButton3!);
+        const searchButton4 = screen.getByText("10만원~")
+        fireEvent.click(searchButton4!);
+        fireEvent.click(searchButton!);
+        
     })
 })

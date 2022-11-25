@@ -29,7 +29,7 @@ describe("gift reducer", () => {
     });
     it("should handle initial state", () => {
         expect(reducer(undefined, { type: "unknown" })).toEqual({
-            gifts: [fakeGift],
+            gifts: [],
             selectedGift: null,
         });
     });

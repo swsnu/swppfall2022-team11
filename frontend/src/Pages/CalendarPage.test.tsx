@@ -15,7 +15,7 @@ describe("<CalendarPage />", () => {
     })
     it("should navigate", () => {
         renderWithProviders(<CalendarPage />)
-        const doneButton = screen.getByText("지금 편지쓰러가기");
+        const doneButton = screen.getByText("지정하기");
         fireEvent.click(doneButton!);
         expect(mockNavigate).toHaveBeenCalledTimes(1);
     })
