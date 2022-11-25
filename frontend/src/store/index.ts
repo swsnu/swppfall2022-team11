@@ -5,7 +5,7 @@ import giftReducer from "./slices/gift"
 import userReducer from "./slices/user"
 export const store = configureStore({
     reducer: {
-        event: eventReducer
+        event: eventReducer,
     
         gift: giftReducer,
     },

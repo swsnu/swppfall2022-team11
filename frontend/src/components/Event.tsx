@@ -21,7 +21,7 @@ const Event = (props: IProps) => {
     else {
         return (
             <div>
-                <div>D{result-1}</div>
+                <div>D{diff-1}</div>
                 <div>{props.title}</div>
             </div>
         );

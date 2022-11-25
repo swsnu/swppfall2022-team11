@@ -13,7 +13,7 @@ function FlipCard(props:{name: string}){
     
 
           }}> 
-             <img className="backgroundimage" src={ props.name+".jpeg"}
+             <img className="backgroundimage" src={ process.env.PUBLIC_URL+props.name+".jpeg"}
              alt={"alt.jpeg"}></img>
              <h1 className="cardcontent" style={{"color":"black"}}>{props.name}</h1> 
             </div>
