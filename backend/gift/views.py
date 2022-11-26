@@ -3,8 +3,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Gift
 
-def index(request):
-    return JsonResponse({'message': 'GIFT OK'})
 
 @csrf_exempt
 def gift_list(request):
