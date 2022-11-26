@@ -29,7 +29,7 @@ function FlipCard(props: { name: string }) {
 
 export default function PersonalPage() {
   const upcoming = [{ "name": "100일" }, { "name": "생일" }, { "name": "크리스마스" }, { "name": "발렌타인데이" }, { "name": "1주년" }];
-  const listCard = upcoming.map((d) => <FlipCard name={d.name} ></FlipCard>);
+  const listCard = upcoming.map((d) => <FlipCard key={d.name} name={d.name} ></FlipCard>);
   return (
     <>
       <Navigation />
