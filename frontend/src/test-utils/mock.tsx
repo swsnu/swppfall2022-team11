@@ -6,6 +6,7 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
 import { AppStore, RootState } from "../store";
 import eventReducer from "../store/slices/event";
+import giftReducer from "../store/slices/gift";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -14,7 +15,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 
 export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
-    reducer: { event: eventReducer },
+    reducer: { event: eventReducer, gift: giftReducer },
     preloadedState,
     middleware: [thunk] as [ThunkMiddleware]
   });

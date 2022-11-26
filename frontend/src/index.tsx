@@ -5,6 +5,9 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from "./store"
+import Axios from "axios";
+Axios.defaults.xsrfCookieName = 'csrftoken';
+Axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,3 +21,4 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+export type AppDispatch = typeof store.dispatch;
