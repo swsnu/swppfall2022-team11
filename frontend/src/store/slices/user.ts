@@ -22,6 +22,9 @@ export interface Anniversary {
     letter:boolean;
     gift:boolean;
 }
+const LOGIN_SUCCESS = {
+   success:false
+}
 
 const christmas: Anniversary = {
     name: "크리스마스",
@@ -133,6 +136,7 @@ export const deleteAnniv = createAsyncThunk("deleteAnniv", async ( td:Anniversar
 export const UserSlice = createSlice({
     name: "User",
     initialState,
+    
     reducers: {
         login: (state, action: PayloadAction<{ email: string; password: string }>) => {
             const user = state;

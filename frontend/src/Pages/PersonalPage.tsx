@@ -2,9 +2,7 @@ import Navigation from "../components/Navigation";
 import "./Personal.css"
 
 function FlipCard(props:{name: string}){
-    
-    
-    
+
     return(
     <>
     <div className="flip-card">
@@ -13,8 +11,7 @@ function FlipCard(props:{name: string}){
     
 
           }}> 
-             <img className="backgroundimage" src={ props.name+".jpeg"}
-             alt={"alt.jpeg"}></img>
+             <img className="backgroundimage" src={props.name+".jpeg"}></img>
              <h1 className="cardcontent" style={{"color":"black"}}>{props.name}</h1> 
             </div>
             <div className="flip-card-back  text-center relative flex flex-col items-center justify-center2">
@@ -42,7 +39,7 @@ export default function PersonalPage() {
           }}>
           <span className="w-full h-full absolute opacity-60 bg-black"></span>
           <h1 className="relative flex flex-col items-center text-gray-200 font-semibold text-xl lg:text-5xl">
-              안녕하세요 @@님
+              안녕하세요 주환님
             </h1>
         </div>
       

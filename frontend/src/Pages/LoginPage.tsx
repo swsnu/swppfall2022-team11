@@ -26,13 +26,9 @@ export default function LoginPage() {
   
     const enteredemail = emailInputRef.current!.value;
     const enteredpw= pwInputRef.current!.value;
-    
-
-
     if(enteredemail!=null&&enteredpw!=null) {
           setSubmitted(true);
           const response = await Axios.post("/user/login/",{"email":enteredemail,"password":enteredpw} 
-     
         );
           console.log("!!!")
           if(response.status==204){
@@ -45,6 +41,7 @@ export default function LoginPage() {
     }
   }
 };
+
   return (
     <>
       <Navigation />
