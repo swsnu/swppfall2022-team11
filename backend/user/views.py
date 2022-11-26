@@ -100,10 +100,10 @@ def info(request):
 @csrf_exempt              
 def delete(request,name):
     if request.method == 'DELETE':
-        body=json.loads(request.body.decode())
         user = User.objects.get(username=request.user.username) 
         anniv = Anniversary.objects.filter(user=user,name=name).first()
-        anniv.delete()
+        if anniv:
+            anniv.delete()
         return HttpResponse(status=200)      
 
 
