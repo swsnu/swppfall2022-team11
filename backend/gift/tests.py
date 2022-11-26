@@ -10,5 +10,5 @@ class IndexTest(TestCase):
 
     def test_str(self):
         gift = Gift.objects.create(name='Test Gift')
-        self.assertEqual(str(gift), 'Test Gfit')
+        self.assertEqual(str(gift), 'Test Gift')
         
