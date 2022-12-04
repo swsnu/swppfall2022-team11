@@ -18,6 +18,8 @@ export default function RegisterPage() {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const lovernameInputRef = useRef<HTMLInputElement>(null);
   const lovernicknameInputRef = useRef<HTMLInputElement>(null);
+  const lovergenderInputRef = useRef<HTMLInputElement>(null);
+  const loverageInputRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
   const submitHandler = async () => {
@@ -26,6 +28,8 @@ export default function RegisterPage() {
     const enteredname = nameInputRef.current!.value;
     const enteredln = lovernameInputRef.current!.value;
     const enterednn = lovernicknameInputRef.current!.value;
+    const enteredlg = lovergenderInputRef.current!.value;
+    const enteredla = loverageInputRef.current!.value;
     if (enteredemail != null && enteredpw != null) {
       const response = await Axios.post("/user/register/", {
         "email": enteredemail, "password": enteredpw, "username": enteredname,
@@ -78,7 +82,8 @@ export default function RegisterPage() {
             <div className="text-gray-200 font-semibold">연인에 대해 알려주새요:
               <p><input placeholder="연인의 이름" name="dd" ref={lovernameInputRef}></input></p>
               <p><input placeholder="애칭이나 호칭" name="nn" ref={lovernicknameInputRef}></input></p>
-
+              <p><input placeholder="연인의 성별" name="nn" ref={lovernicknameInputRef}></input></p>
+              <p><input placeholder="연인의 나이" name="nn" ref={lovernicknameInputRef}></input></p>
             </div>
             <div className="text-gray-200 font-semibold">기념일등록하기:
               <div>
