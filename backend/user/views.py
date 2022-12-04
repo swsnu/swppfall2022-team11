@@ -9,8 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Anniversary,UserFullInfo
 from django.contrib.auth.models import User
 
-
-
 @csrf_exempt      
 def register(request):
     if request.method == 'POST':
