@@ -15,30 +15,7 @@ def gift_list(request):
 
 
 def shop_keyword(request):
-    if request.method == 'GET':
-        print("여기")
-        age_gender = 'M01'
-        category_id = 'ALL'
-        url = 'https://search.shopping.naver.com/best/category/keyword?categoryCategoryId={}&categoryDemo={}&categoryRootCategoryId=ALL&chartRank=1&period=P1D'.format(category_id,age_gender)
-
-        headers = { 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6,zh;q=0.5',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
-            'Accept-Encoding': 'gzip'
-        }
-
-        raw = requests.get(url=url, headers=headers)
-
-        html = BeautifulSoup(raw.text, 'html.parser')
-
-        test =html.find('script', {'id' : '__NEXT_DATA__'}).text #텍스트만
-
-        dict_result = json.loads(test)
-        popular_kws = dict_result['props']['pageProps']['dehydratedState']['queries'][2]['state']['data']['charts']
-        
-        keyword_list = [keyword['exposeKeyword'] for keyword in popular_kws]
-        return JsonResponse(keyword_list, json_dumps_params={'ensure_ascii': False},safe= False)
-
-    elif request.method == 'POST':
+   if request.method == 'POST':
         body = request.body.decode()
         body = eval(body)
         age_gender = body["age_gender"]
