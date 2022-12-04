@@ -78,7 +78,8 @@ const stubInitialState: GiftState = {
 const mockStore = getMockStore(
     {
         gift: stubInitialState,
-        event: {events:[], selectedEvent: null}
+        event: {events:[], selectedEvent: null},
+        user:{ email:"1234@naver.com",password:"1234",username:"주환",loggedin:true,Anniversary:[]}
     }
 );
 

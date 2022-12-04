@@ -38,7 +38,7 @@ def register(request):
                     newanniv.save()                   
                 return HttpResponse(status=201) 
         except (KeyError, JSONDecodeError) as e:
-            print(e.msg)
+  
             print(e)
             return HttpResponseBadRequest()
     else:
@@ -78,7 +78,7 @@ def info(request):
         return HttpResponse(status=401)
     user = User.objects.get(username=request.user.username)    
     if request.method == 'GET':
-       Anniv_list = [{"name":Anniv.name,"date":Anniv.date,"letter":Anniv.letter ,"gift": Anniv.gift } for Anniv in user.Annivlist.all()]     
+       Anniv_list = [{"name":Anniv.name,"date":Anniv.date,"letter":Anniv.letter ,"gift": Anniv.gift ,"lettertext":Anniv.lettertext } for Anniv in user.Annivlist.all()]     
        Info={"name":user.first_name, "lovername":user.info.lovername,"lovernickname":user.info.lovernickname , "loverage":user.info.loverage,"lovergender":user.info.lovergender}
        response={"Annivlist":Anniv_list,"fullinfo":Info}
        #response={"fullinfo":Info}
@@ -111,6 +111,21 @@ def delete(request,name):
         if anniv:
             anniv.delete()
         return HttpResponse(status=200)      
+
+@csrf_exempt                           
+def letter(request):
+    if request.user.is_authenticated==False:
+        return HttpResponse(status=401)
+    user = User.objects.get(username=request.user.username) 
+    if request.method == 'POST':
+        body=json.loads(request.body.decode())
+        name=body["name"]
+        lettertext=body["lettertext"]
+        anniv = Anniversary.objects.filter(user=user,name=name).first()
+        anniv.lettertext=lettertext
+        anniv.save()
+        return HttpResponse(status=200)
+
 
 
 @ensure_csrf_cookie

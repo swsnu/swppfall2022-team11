@@ -13,7 +13,7 @@ class UserTestCase(TestCase):
         response = client.get('/user/token/')
         csrftoken = response.cookies['csrftoken'].value  # Get csrf token from cookie
 
-        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[]}),
+        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[],'loverage':'15','lovergender':'Female'}),
                                content_type='application/json',HTTP_X_CSRFTOKEN=csrftoken)
         self.assertEqual(response.status_code, 201)
         response = client.get('/user/register/', HTTP_X_CSRFTOKEN=csrftoken)  
@@ -32,7 +32,7 @@ class UserTestCase(TestCase):
         client = Client(enforce_csrf_checks=True)
         response = client.get('/user/token/')
         csrftoken = response.cookies['csrftoken'].value  # Get csrf token from cookie
-        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[]}),
+        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[],'loverage':'15','lovergender':'Female'}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken)
         response = client.post('/user/login/', json.dumps({'email': 'chris22', 'password': 'chris'}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken)
@@ -52,7 +52,7 @@ class UserTestCase(TestCase):
         csrftoken = response.cookies['csrftoken'].value  # Get csrf token from cookie
         response = client.get('/user/logout/')                      
         self.assertEqual(response.status_code, 401)   
-        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[]}),
+        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[],'loverage':'15','lovergender':'Female'}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken)
         response = client.post('/user/login/', json.dumps({'email': 'chris', 'password': 'chris'}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken)
@@ -67,7 +67,7 @@ class UserTestCase(TestCase):
         client = Client()
         response = client.get('/user/token/')
         csrftoken = response.cookies['csrftoken'].value  # Get csrf token from cookie
-        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[]}),
+        response = client.post('/user/register/', json.dumps({'email': 'chris', 'password': 'chris','username':'juhwan','lovername':'jun','lovernickname':'kit','Anniversary':[],'loverage':'15','lovergender':'Female'}),
                                content_type='application/json', HTTP_X_CSRFTOKEN=csrftoken)
         response = client.get('/user/info/')
         self.assertEqual(response.status_code, 401)

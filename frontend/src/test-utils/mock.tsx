@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AppStore, RootState } from "../store";
 import eventReducer from "../store/slices/event";
 import giftReducer from "../store/slices/gift";
+import userReducer from "../store/slices/user";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -15,7 +16,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 
 export const getMockStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
-    reducer: { event: eventReducer, gift: giftReducer },
+    reducer: { event: eventReducer, gift: giftReducer , user:userReducer},
     preloadedState,
     middleware: [thunk] as [ThunkMiddleware]
   });

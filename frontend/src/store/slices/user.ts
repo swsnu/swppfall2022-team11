@@ -38,7 +38,7 @@ const initialState: UserInfo = {
     password:"",
     username:"",
     loggedin:false,
-    Anniversary:[]
+    Anniversary:[christmas]
 }
 
 export const fetchUserInfo = createAsyncThunk("fetchUserInfo", async (td:void,{dispatch}) => {

@@ -8,6 +8,7 @@ export const store = configureStore({
         event: eventReducer,
     
         gift: giftReducer,
+        user: userReducer
     },
 
     // 이거 Date가 serializable 하지 않다고 에러 떠서 넣었습니다. 참고 부탁드립니다. by 민준

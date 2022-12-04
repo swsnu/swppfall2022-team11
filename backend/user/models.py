@@ -9,6 +9,9 @@ class Anniversary(models.Model):
     date=models.CharField( max_length=30, default="2000-00-00")
     letter=models.CharField(default="False",max_length=30)
     gift=models.CharField(default="False",max_length=30)
+    lettertext=models.TextField(default="")
+
+
 
 class UserFullInfo(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE,
