@@ -1,7 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./Decorate.css"
 import { useLocation } from 'react-router-dom';
+import { fetchUserInfo, selectUser} from "../store/slices/user";
+import { AppDispatch } from "../store";
+
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 import Navigation from "../components/Navigation";
@@ -49,19 +54,48 @@ function SelectBox(props: { options: any[]; defaultValue: number; selecthandler:
 }
 
 export default function DecoratePage(): React.ReactElement {
+    const { state } = useLocation();
+    const [lettertext, settext]=useState("")
     const [fontsize, setfontsize] = useState(20)
     const [fontstyle, setfontstyle] = useState("")
     const [ previewmode,setpreviewmode]=useState(false)
+    const userState = useSelector(selectUser);
+    const dispatch = useDispatch<AppDispatch>();
+
+
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+    if(state["from"]=="userpage"){
+
+        userState.user.Anniversary.map((anniv)=>{ 
+            if(anniv.name==state["name"]){
+                settext(anniv.lettertext)
+            }
+        })
+    }
+    else {
+        
+       const text=state==null ?  "우리가 만난게 엊그제 같은데 벌써 100일이나 됐네? \n 처음 너를 봤을 때가 생각나.어떻게 저렇게 예쁜 애가 있나? 설레었어.너의 그 환한 웃음이 너무 좋았어.": state["from"]=="create"? state["text"]: "로딩중"
+       settext(text)
+
+
+}
+
+
+  }, []);
+
     const showPreview=()=>{
        setpreviewmode(true);
     }
   
+    const Save=()=>{
      
+     return 1;
+    }
     
-
-
-    const text = "우리가 만난게 엊그제 같은데 벌써 100일이나 됐네? \n 처음 너를 봤을 때가 생각나.어떻게 저렇게 예쁜 애가 있나? 설레었어.너의 그 환한 웃음이 너무 좋았어."
-
+    
+    
+    
     if (previewmode==false) 
     {return (
 
@@ -83,14 +117,14 @@ export default function DecoratePage(): React.ReactElement {
             <div className="letterview-component">
                 <p
                     style={{ fontSize: `${fontsize}px`, fontFamily:fontstyle }} >
-                    {text}
+                    {lettertext}
                 </p>
             </div>
   
             <div className="btn-group" >
             <button onClick={()=>showPreview()}>Preview</button>
             <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
-            <button >파일로저장하기</button>
+            <button >저장하기</button>
             </div>    
             
             </div>
@@ -103,12 +137,12 @@ export default function DecoratePage(): React.ReactElement {
         <>
         <Navigation />
         <div className="full" style={{ width:500,backgroundColor:"white" ,margin:"auto"}}>
-        <h1 style={{fontSize:30, color:"", fontFamily:"Kkomi", margin:30, textAlign:"center"}}>미리보기에요</h1>
+
       
         <div className="btn-group" >
         <button onClick={()=>showPreview()}>Preview</button>
         <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
-        <button >파일로저장하기</button>
+        <button onClick={()=>Save()}>저장하기</button>
         </div>    
         
         </div>

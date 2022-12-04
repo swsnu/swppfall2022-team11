@@ -21,6 +21,7 @@ export interface Anniversary {
     date:Date;
     letter:boolean;
     gift:boolean;
+    lettertext:string
 }
 const LOGIN_SUCCESS = {
    success:false
@@ -30,7 +31,8 @@ const christmas: Anniversary = {
     name: "크리스마스",
     date: new Date("December 25, 2022 00:00:00"),
     letter:false,
-    gift:false
+    gift:false,
+    lettertext:""
 }
 
 const initialState: UserInfo = {
@@ -160,6 +162,7 @@ export const UserSlice = createSlice({
                  date:action.payload.Anniversary[i]["date"],
                  letter:action.payload.Anniversary[i]["letter"],
                  gift:action.payload.Anniversary[i]["gift"],
+                 lettertext:action.payload.Anniversary[i]["lettertext"]
                 }
                 user["Anniversary"].push(temp);
             }

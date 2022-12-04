@@ -5,9 +5,10 @@ import { fetchUserInfo, selectUser } from "../store/slices/user";
 import { AppDispatch } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FlipCard(props: { name: string }) {
-
+  const navigate = useNavigate()
   return (
     <>
       <div className="flip-card">
@@ -22,8 +23,9 @@ function FlipCard(props: { name: string }) {
           </div>
           <div className="flip-card-back  text-center relative flex flex-col items-center justify-center2">
 
-            <a href="/create" className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
-            <a href="/gift" className="rounded-xl text-lg  lg:p-4 mt:5  p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
+            <a onClick={() => navigate('/craate', { state:{"name":props.name}  })} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
+            <a onClick={() => navigate('/decorate', { state:{"name":props.name,"text":"","from":"userpage"}})} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지수정하기</a>
+            <a onClick={() => navigate('/gift', { state:props.name  })} className="rounded-xl text-lg  lg:p-4 mt:5  p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
           </div>
         </div>
       </div>
@@ -33,6 +35,7 @@ function FlipCard(props: { name: string }) {
 
 
 export default function PersonalPage() {
+
   const userState = useSelector(selectUser);
   const dispatch = useDispatch<AppDispatch>();
   let upcoming =[];

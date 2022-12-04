@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@react-18-pdf/renderer": "^2.3.4",
     "autoprefixer": "^10.4.12",
     "eslint-config-next": "^13.0.1",
     "postcss": "^8.4.18",
