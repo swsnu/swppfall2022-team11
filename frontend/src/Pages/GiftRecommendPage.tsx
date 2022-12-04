@@ -69,11 +69,12 @@ const GiftRecommendPage = () => {
         <button onClick={()=>setKeywordCategory('50000007')}>스포츠레저</button>
         <button onClick={()=>setKeywordCategory('50000008')}>생활건강</button>
         <button onClick={()=>setKeywordCategory('50000009')}>여가생활편의</button>
-
+        <div>
         <button onClick={fetchKeywords}>불러오기</button>
+        </div>
 
 
-        <ul>{keywordList.map(keyword=>(<a href="www.naver.com">{keyword}</a>))}</ul>
+        <ul>{keywordList.map(keyword=>(<li>{keyword}</li>))}</ul>
         <h1>운영자가 직접 큐레이팅한 선물 목록</h1>
         <button onClick={()=>{setSearchPrice(1)}}>~3만원</button>
         <button onClick={()=>{setSearchPrice(2)}}>3만원~5만원</button>
