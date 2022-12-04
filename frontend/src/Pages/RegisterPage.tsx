@@ -34,6 +34,7 @@ export default function RegisterPage() {
       const response = await Axios.post("/user/register/", {
         "email": enteredemail, "password": enteredpw, "username": enteredname,
         "lovername": enteredln, "lovernickname": enterednn, "Anniversary": []
+        ,"loverage":enteredla, "lovergender": enteredlg
       }
       );
       if (response.status == 201) {
