@@ -6,6 +6,8 @@ export interface EventType {
     id: number;
     title: string;
     date: Date;
+    gift: boolean;
+    letter:boolean;
 }
 
 export interface EventState {
@@ -16,7 +18,9 @@ export interface EventState {
 const christmas: EventType = {
     id: 0,
     title: "크리스마스",
-    date: new Date("December 25, 2022 00:00:00")
+    date: new Date("December 25, 2022 00:00:00"),
+    gift: false,
+    letter: false
 }
 
 const initialState: EventState = {
@@ -70,6 +74,8 @@ export const eventSlice = createSlice({
                 id: state.events[state.events.length - 1].id + 1,
                 title: action.payload.title,
                 date: action.payload.date,
+                gift:false,
+                letter:false
             };
             state.events.push(newEvent);
         },

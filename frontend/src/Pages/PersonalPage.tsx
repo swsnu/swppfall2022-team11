@@ -1,8 +1,14 @@
 import Navigation from "../components/Navigation";
 import "./Personal.css"
+import User from "../components/Gift";
+import { fetchUserInfo, selectUser } from "../store/slices/user";
+import { AppDispatch } from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FlipCard(props: { name: string }) {
-
+  const navigate = useNavigate()
   return (
     <>
       <div className="flip-card">
@@ -17,8 +23,9 @@ function FlipCard(props: { name: string }) {
           </div>
           <div className="flip-card-back  text-center relative flex flex-col items-center justify-center2">
 
-            <a href="/create" className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
-            <a href="/gift" className="rounded-xl text-lg  lg:p-4 mt:5  p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
+            <a onClick={() => navigate('/craate', { state:{"name":props.name}  })} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
+            <a onClick={() => navigate('/decorate', { state:{"name":props.name,"text":"","from":"userpage"}})} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지수정하기</a>
+            <a onClick={() => navigate('/gift', { state:props.name  })} className="rounded-xl text-lg  lg:p-4 mt:5  p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
           </div>
         </div>
       </div>
@@ -28,8 +35,22 @@ function FlipCard(props: { name: string }) {
 
 
 export default function PersonalPage() {
-  const upcoming = [{ "name": "100일" }, { "name": "생일" }, { "name": "크리스마스" }, { "name": "발렌타인데이" }, { "name": "1주년" }];
+
+  const userState = useSelector(selectUser);
+  const dispatch = useDispatch<AppDispatch>();
+  let upcoming =[];
+
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+    userState.user.Anniversary.map((d)=> upcoming.push({"name":d.name , "date": d.date}));
+    
+
+  }, []);
+
+
+  upcoming = [{ "name": "100일" }, { "name": "생일" }, { "name": "발렌타인데이" }, { "name": "1주년" }];
   const listCard = upcoming.map((d) => <FlipCard key={d.name} name={d.name} ></FlipCard>);
+
   return (
     <>
       <Navigation />
@@ -52,9 +73,12 @@ export default function PersonalPage() {
               {listCard}
             </div>
           </div>
+          <button onClick={ ()=>{ return 1}}> 기념일추가하기</button>
         </div>
+        
 
 
+    
 
 
 

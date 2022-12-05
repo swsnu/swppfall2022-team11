@@ -5,11 +5,15 @@ import { useRef, useState } from "react";
 import { AppDispatch } from "..";
 import { useNavigate } from "react-router-dom";
 import React from 'react'
-import Calendar from "./CalendarPage"
+
 import Axios from "axios";
+import Calendar from 'react-calendar';
+
+import moment from "moment"
 import {
   UserActions
 } from "../store/slices/user";
+
 export default function RegisterPage() {
 
 
@@ -18,6 +22,11 @@ export default function RegisterPage() {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const lovernameInputRef = useRef<HTMLInputElement>(null);
   const lovernicknameInputRef = useRef<HTMLInputElement>(null);
+  const lovergenderInputRef = useRef<HTMLInputElement>(null);
+  const loverageInputRef = useRef<HTMLInputElement>(null);
+  
+  const [startDate, setStartDate] = useState(new Date());
+  const [birthDate, setBirthDate] = useState(new Date());
 
   const navigate = useNavigate();
   const submitHandler = async () => {
@@ -26,12 +35,18 @@ export default function RegisterPage() {
     const enteredname = nameInputRef.current!.value;
     const enteredln = lovernameInputRef.current!.value;
     const enterednn = lovernicknameInputRef.current!.value;
+    const enteredlg = lovergenderInputRef.current!.value;
+    const enteredla = loverageInputRef.current!.value;
+    console.log("enteredemail:",enteredemail)
+    
     if (enteredemail != null && enteredpw != null) {
       const response = await Axios.post("/user/register/", {
         "email": enteredemail, "password": enteredpw, "username": enteredname,
         "lovername": enteredln, "lovernickname": enterednn, "Anniversary": []
+        ,"loverage":enteredla, "lovergender": enteredlg
       }
       );
+      console.log(response.status)
       if (response.status == 201) {
         alert("회원가입이 완료되었습니다");
         navigate('/userpage', { replace: true });
@@ -78,14 +93,20 @@ export default function RegisterPage() {
             <div className="text-gray-200 font-semibold">연인에 대해 알려주새요:
               <p><input placeholder="연인의 이름" name="dd" ref={lovernameInputRef}></input></p>
               <p><input placeholder="애칭이나 호칭" name="nn" ref={lovernicknameInputRef}></input></p>
-
+              <p><input placeholder="연인의 성별" name="nn" ref={lovernicknameInputRef}></input></p>
+              <p><input placeholder="연인의 나이" name="nn" ref={lovernicknameInputRef}></input></p>
+              <p><input placeholder="연인의 생일" name="nn" ref={lovernicknameInputRef}></input></p>
+    
             </div>
-            <div className="text-gray-200 font-semibold">기념일등록하기:
-              <div>
-                <Calendar />
+          
+              <div>사귀기시작한날
+              <Calendar onChange={setStartDate} value={startDate} ></Calendar>
+              </div>
+              <div>연인의생일
+              <Calendar onChange={setBirthDate} value={birthDate} ></Calendar>
               </div>
 
-            </div>
+    
 
             <div className="button text-center">
               <button type="submit" onClick={() => submitHandler()}>가입하기</button>

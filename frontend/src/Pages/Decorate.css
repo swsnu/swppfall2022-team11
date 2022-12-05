@@ -1,21 +1,21 @@
 @font-face {
   font-family: "Pak_Yong_jun";
-  src: url("../../assets/fonts/Pak_Yong_jun.ttf");
+  src: url("../assets/fonts/Pak_Yong_jun.ttf");
 }
 
 @font-face {
   font-family: "Kkomi";
-  src: url("../../assets/fonts/KNPSKkomi.ttf");
+  src: url("../assets/fonts/KNPSKkomi.ttf");
 }
 
 @font-face {
   font-family: "kotra-son";
-  src: url("../../assets/fonts/KOTRA_SONGEULSSI.ttf");
+  src: url("../assets/fonts/KOTRA_SONGEULSSI.ttf");
 }
 
 @font-face {
   font-family: "ACC_chilren";
-  src: url("../../assets/fonts/ACC어린이마음고운체.ttf");
+  src: url("../assets/fonts/ACC어린이마음고운체.ttf");
 }
 
 .textheader{
