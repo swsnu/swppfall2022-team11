@@ -73,9 +73,12 @@ export default function PersonalPage() {
               {listCard}
             </div>
           </div>
+          <button onClick={ ()=>{ return 1}}> 기념일추가하기</button>
         </div>
+        
 
 
+    
 
 
 
