@@ -1,8 +1,8 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Decorate.css"
 import { useLocation } from 'react-router-dom';
-import { fetchUserInfo, selectUser} from "../store/slices/user";
+import { fetchUserInfo, selectUser } from "../store/slices/user";
 import { AppDispatch } from "../store";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -31,14 +31,14 @@ const fontOPTIONS = [
 ];
 
 
-function SelectBox(props: { options: any[]; defaultValue: number; selecthandler: Function }) {
+function SelectBox(props: { options: any[]; defaultValue: number | string; selecthandler: Function }) {
     const HandleChange = (e: { target: { value: any; }; }) => {
         props.selecthandler(e.target.value)
 
 
     };
     return (
-        <select style={{padding:15, fontSize:20}} onChange={HandleChange}>
+        <select style={{ padding: 16, fontSize: 16 }} onChange={HandleChange}>
             {props.options.map((option) => (
                 <option
                     style={{ fontFamily: `${option.value}` }}
@@ -55,102 +55,102 @@ function SelectBox(props: { options: any[]; defaultValue: number; selecthandler:
 
 export default function DecoratePage(): React.ReactElement {
     const { state } = useLocation();
-    const [lettertext, settext]=useState("")
+    const [lettertext, settext] = useState("")
     const [fontsize, setfontsize] = useState(20)
-    const [fontstyle, setfontstyle] = useState("")
-    const [ previewmode,setpreviewmode]=useState(false)
+    const [fontstyle, setfontstyle] = useState("Kkomi")
+    const [previewmode, setpreviewmode] = useState(false)
     const userState = useSelector(selectUser);
     const dispatch = useDispatch<AppDispatch>();
 
 
-  useEffect(() => {
-    dispatch(fetchUserInfo());
-    if(state["from"]=="userpage"){
+    useEffect(() => {
+        dispatch(fetchUserInfo());
+        if (state["from"] == "userpage") {
 
-        userState.user.Anniversary.map((anniv)=>{ 
-            if(anniv.name==state["name"]){
-                settext(anniv.lettertext)
-            }
-        })
+            userState.user.Anniversary.map((anniv) => {
+                if (anniv.name == state["name"]) {
+                    settext(anniv.lettertext)
+                }
+            })
+        }
+        else {
+
+            const text = state == null ? "우리가 만난게 엊그제 같은데 벌써 100일이나 됐네? \n 처음 너를 봤을 때가 생각나.어떻게 저렇게 예쁜 애가 있나? 설레었어.너의 그 환한 웃음이 너무 좋았어." : state["from"] == "create" ? state["text"] : "로딩중"
+            settext(text)
+
+
+        }
+
+
+    }, []);
+
+    const showPreview = () => {
+        setpreviewmode(true);
     }
-    else {
-        
-       const text=state==null ?  "우리가 만난게 엊그제 같은데 벌써 100일이나 됐네? \n 처음 너를 봤을 때가 생각나.어떻게 저렇게 예쁜 애가 있나? 설레었어.너의 그 환한 웃음이 너무 좋았어.": state["from"]=="create"? state["text"]: "로딩중"
-       settext(text)
 
+    const Save = () => {
 
-}
-
-
-  }, []);
-
-    const showPreview=()=>{
-       setpreviewmode(true);
+        return 1;
     }
-  
-    const Save=()=>{
-     
-     return 1;
+
+
+
+
+    if (previewmode == false) {
+        return (
+
+            <div className="flex flex-col justify-center items-center">
+                <Navigation />
+                <div className="mt-10 bg-gray-200 w-full max-w-lg p-10 rounded-xl" >
+                    <h1 style={{ fontSize: 24, fontFamily: "Kkomi", margin: 30, textAlign: "center" }}>이제 편지를 함께 꾸며보아요</h1>
+
+                    <div className="textheader">
+                        <h2>폰트와 크기 배경을 골라주세요</h2>
+                    </div>
+
+                    <div className="choose-bar rounded p-2">
+                        <SelectBox options={OPTIONS} defaultValue={20} selecthandler={setfontsize}></SelectBox>
+
+                        <SelectBox options={fontOPTIONS} defaultValue={"Kkomi"} selecthandler={setfontstyle}></SelectBox>
+                    </div>
+                    <div className="letterview-component">
+                        <p
+                            style={{ fontSize: `${fontsize}px`, fontFamily: fontstyle }} >
+                            {lettertext}
+                        </p>
+                    </div>
+
+                    {/* <div className="btn-group" >
+                        <button onClick={() => showPreview()}>Preview</button>
+                        <button onClick={() => { setpreviewmode(false) }}>Edit</button>
+                        <button >저장하기</button>
+                    </div> */}
+
+                </div>
+
+            </div>
+        )
     }
-    
-    
-    
-    
-    if (previewmode==false) 
-    {return (
-
-        <>
-            <Navigation />
-            <div className="full" style={{ width:500,backgroundColor:"white" ,margin:"auto"}}>
-            <h1 style={{fontSize:30, color:"", fontFamily:"Kkomi", margin:30, textAlign:"center"}}>이제 편지를 함께 꾸며보아요</h1>
-            
-            <div className="textheader">
-              <h2>폰트와 크기 배경을 골라주세요</h2>
-            </div>
-
-            <div className="choose-bar">
-            <SelectBox options={OPTIONS} defaultValue={10} selecthandler={setfontsize}></SelectBox>
-          
-
-            <SelectBox options={fontOPTIONS} defaultValue={0} selecthandler={setfontstyle}></SelectBox>
-            </div>
-            <div className="letterview-component">
-                <p
-                    style={{ fontSize: `${fontsize}px`, fontFamily:fontstyle }} >
-                    {lettertext}
-                </p>
-            </div>
-  
-            <div className="btn-group" >
-            <button onClick={()=>showPreview()}>Preview</button>
-            <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
-            <button >저장하기</button>
-            </div>    
-            
-            </div>
-
-        </>
-    )}
 
     return (
 
         <>
-        <Navigation />
-        <div className="full" style={{ width:500,backgroundColor:"white" ,margin:"auto"}}>
+            <Navigation />
+            <div className="full" style={{ width: 500, backgroundColor: "white", margin: "auto" }}>
 
-      
-        <div className="btn-group" >
+
+                {/* <div className="btn-group" >
         <button onClick={()=>showPreview()}>Preview</button>
         <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
         <button onClick={()=>Save()}>저장하기</button>
-        </div>    
-        
-        </div>
+        </div>     */}
 
-    </>
+            </div>
+
+        </>
     )
 
-    
+
 
 
 }
