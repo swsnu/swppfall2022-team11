@@ -23,7 +23,7 @@ export default function MainPage() {
             </p>
           </div>
           <div className="flex">
-            <a href="/register" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
+            <a href="/create" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
           </div>
         </div>
       </main>
