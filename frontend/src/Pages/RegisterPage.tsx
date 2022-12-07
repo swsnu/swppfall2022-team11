@@ -13,7 +13,7 @@ import moment from "moment"
 import {
   UserActions
 } from "../store/slices/user";
-
+import { BACKEND_URL } from "../utils";
 export default function RegisterPage() {
 
 
@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const lovernicknameInputRef = useRef<HTMLInputElement>(null);
   const lovergenderInputRef = useRef<HTMLInputElement>(null);
   const loverageInputRef = useRef<HTMLInputElement>(null);
-  
+
   const [startDate, setStartDate] = useState(new Date());
   const [birthDate, setBirthDate] = useState(new Date());
 
@@ -37,13 +37,13 @@ export default function RegisterPage() {
     const enterednn = lovernicknameInputRef.current!.value;
     const enteredlg = lovergenderInputRef.current!.value;
     const enteredla = loverageInputRef.current!.value;
-    console.log("enteredemail:",enteredemail)
-    
+    console.log("enteredemail:", enteredemail)
+
     if (enteredemail != null && enteredpw != null) {
-      const response = await Axios.post("/user/register/", {
+      const response = await Axios.post(BACKEND_URL + "/user/register/", {
         "email": enteredemail, "password": enteredpw, "username": enteredname,
         "lovername": enteredln, "lovernickname": enterednn, "Anniversary": []
-        ,"loverage":enteredla, "lovergender": enteredlg
+        , "loverage": enteredla, "lovergender": enteredlg
       }
       );
       console.log(response.status)
@@ -59,54 +59,46 @@ export default function RegisterPage() {
 
 
   return (
-    <>
-      <Navigation></Navigation>
-      <main className="relative w-full h-full">
+    <div className="w-full h-full flex flex-col">
+      <Navigation />
+      <main className="relative w-full flex-1">
         <div className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
             'backgroundImage': "url(/background.jpg)"
           }}>
           <span className="w-full h-full absolute opacity-60 bg-black"></span>
         </div>
-
         <div className="relative flex flex-col items-center justify-center h-full pb-10">
           <div className="w-full px-4 text-center">
             <h1 className="text-gray-200 font-semibold text-xl lg:text-5xl">
-              AI 큐피드에게 먼저 당신을 알려주세요
+              먼저 당신을 알려주세요
             </h1>
-            <h1 className="text-gray-200 font-semibold text-xl lg:text-5xl mt-2 lg:mt-4">
-
-            </h1>
-
           </div>
-          <form id="regForm">
+          <form id="regForm" className="flex flex-col justify-center items-center">
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="이메일 주소" name="email" required ref={emailInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="password" placeholder="패스워드" name="pwd" required ref={pwInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="이름" name="fname" required ref={nameInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="연인의 이름" name="dd" required ref={lovernameInputRef}></input>
+
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="애칭이나 호칭" name="dd" required ref={lovernicknameInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="연인의 이름" name="dd" required ref={lovernameInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="연인의 이름" name="dd" required ref={lovernameInputRef}></input>
+            <input className="mt-4 rounded p-4 border mr-0 text-gray-800 border-gray-200 bg-white" type="text" placeholder="연인의 이름" name="dd" required ref={lovernameInputRef}></input>
+            <p><input placeholder="연인의 이름" name="dd" ref={lovernameInputRef}></input></p>
+            <p><input placeholder="애칭이나 호칭" name="nn" ref={lovernicknameInputRef}></input></p>
+            <p><input placeholder="연인의 성별" name="nn" ref={lovernicknameInputRef}></input></p>
+            <p><input placeholder="연인의 나이" name="nn" ref={lovernicknameInputRef}></input></p>
+            <p><input placeholder="연인의 생일" name="nn" ref={lovernicknameInputRef}></input></p>
 
 
-            <div className="text-gray-200 font-semibold">당신의 이름을 알려주세요:
-              <p><input placeholder="이름" name="fname" ref={nameInputRef}></input></p>
-
-            </div>
-            <div className="text-gray-200 font-semibold">사용할 이메일과 비밀번호:
-              <p><input placeholder="E-mail..." name="email" ref={emailInputRef}></input></p>
-              <p><input placeholder="Password" name="pwd" ref={pwInputRef}></input></p>
-            </div>
-            <div className="text-gray-200 font-semibold">연인에 대해 알려주새요:
-              <p><input placeholder="연인의 이름" name="dd" ref={lovernameInputRef}></input></p>
-              <p><input placeholder="애칭이나 호칭" name="nn" ref={lovernicknameInputRef}></input></p>
-              <p><input placeholder="연인의 성별" name="nn" ref={lovernicknameInputRef}></input></p>
-              <p><input placeholder="연인의 나이" name="nn" ref={lovernicknameInputRef}></input></p>
-              <p><input placeholder="연인의 생일" name="nn" ref={lovernicknameInputRef}></input></p>
-    
-            </div>
-          
-              <div>사귀기시작한날
+            <div>사귀기시작한날
               <Calendar onChange={setStartDate} value={startDate} ></Calendar>
-              </div>
-              <div>연인의생일
+            </div>
+            <div>연인의생일
               <Calendar onChange={setBirthDate} value={birthDate} ></Calendar>
-              </div>
+            </div>
 
-    
+
 
             <div className="button text-center">
               <button type="submit" onClick={() => submitHandler()}>가입하기</button>
@@ -117,6 +109,6 @@ export default function RegisterPage() {
 
 
       </main>
-    </>
+    </div>
   )
 }

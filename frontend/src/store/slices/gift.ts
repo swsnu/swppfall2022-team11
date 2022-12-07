@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "..";
+import { BACKEND_URL } from "../../utils";
 
 export interface GiftType {
     id: number;
@@ -21,7 +22,7 @@ const initialState: GiftState = {
 }
 
 export const fetchGifts = createAsyncThunk("todo/fetchGifts", async () => {
-    const response = await axios.get<GiftType[]>("/gift/");
+    const response = await axios.get<GiftType[]>(BACKEND_URL+ "/gift/");
     return response.data;
 }
 );
@@ -29,7 +30,7 @@ export const fetchGifts = createAsyncThunk("todo/fetchGifts", async () => {
 export const fetchGift = createAsyncThunk(
     "todo/fetchEvent",
     async (id: GiftType["id"]) => {
-        const response = await axios.get(`/api/gift/${id}/`);
+        const response = await axios.get(BACKEND_URL+ `/api/gift/${id}/`);
         return response.data ?? null;
     }
 );

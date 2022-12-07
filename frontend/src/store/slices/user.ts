@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "..";
+import { BACKEND_URL } from "../../utils";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -44,7 +45,7 @@ const initialState: UserInfo = {
 }
 
 export const fetchUserInfo = createAsyncThunk("fetchUserInfo", async (td:void,{dispatch}) => {
-    const response = await axios.get("/user/info");
+    const response = await axios.get(BACKEND_URL + "/user/info");
     if (response.status==200)
     {
      const username=response.data["fullinfo"]["name"];
@@ -59,7 +60,7 @@ export const fetchUserInfo = createAsyncThunk("fetchUserInfo", async (td:void,{d
 export const login = createAsyncThunk("login", async ( td: Pick<Loginform, "email" | "password">,{ dispatch }) => {
 
    
-    //const response = await axios.post("/user/register",td);
+    //const response = await axios.post(BACKEND_URL + "/user/register",td);
     //if (response.status==204)
     {
         dispatch(UserActions.login(td))
@@ -72,7 +73,7 @@ export const login = createAsyncThunk("login", async ( td: Pick<Loginform, "emai
 export const logout = createAsyncThunk("logout", async ( td: Pick<Loginform, "email" | "password">,{ dispatch }) => {
 
    
-    const response = await axios.get("/user/logout");
+    const response = await axios.get(BACKEND_URL + "/user/logout");
     if (response.status==204)
     {
         dispatch(UserActions.logout(td))
@@ -85,7 +86,7 @@ export const logout = createAsyncThunk("logout", async ( td: Pick<Loginform, "em
 export const register = createAsyncThunk("register", async ( td: UserInfo,{ dispatch }) => {
 
    
-    const response = await axios.post("/user/login",td);
+    const response = await axios.post(BACKEND_URL + "/user/login",td);
     if (response.status==201)
     {
         return true;
@@ -97,7 +98,7 @@ export const register = createAsyncThunk("register", async ( td: UserInfo,{ disp
 export const addAnniv = createAsyncThunk("addAnniv", async ( td: Anniversary,{ dispatch }) => {
 
    
-    const response = await axios.post("/user/info",td);
+    const response = await axios.post(BACKEND_URL + "/user/info",td);
     if (response.status==200)
     {
        dispatch(UserActions.addAnniv({Anniversary:td}))
@@ -110,7 +111,7 @@ export const addAnniv = createAsyncThunk("addAnniv", async ( td: Anniversary,{ d
 
 export const fixAnniv = createAsyncThunk("fixAnniv", async ( td: Anniversary,{ dispatch }) => {
    
-    const response = await axios.put("/user/info",td);
+    const response = await axios.put(BACKEND_URL + "/user/info",td);
     if (response.status==200)
     {
        dispatch(UserActions.fixAnniv({Anniversary:td}))
@@ -124,7 +125,7 @@ export const fixAnniv = createAsyncThunk("fixAnniv", async ( td: Anniversary,{ d
 export const deleteAnniv = createAsyncThunk("deleteAnniv", async ( td:Anniversary,{ dispatch }) => {
 
    
-    const response = await axios.delete("/user/login/"+td.name);
+    const response = await axios.delete(BACKEND_URL + "/user/login/"+td.name);
     if (response.status==200)
     {
         dispatch(UserActions.delete({Anniversary:td}))

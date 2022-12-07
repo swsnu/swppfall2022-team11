@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "..";
+import { BACKEND_URL } from "../../utils";
 
 export interface EventType {
     id: number;
@@ -37,7 +38,7 @@ export const fetchEvents = createAsyncThunk("todo/fetchEvents", async () => {
 export const fetchEvent = createAsyncThunk(
     "todo/fetchEvent",
     async (id: EventType["id"], { dispatch }) => {
-        const response = await axios.get(`/api/event/${id}/`);
+        const response = await axios.get(BACKEND_URL + `/api/event/${id}/`);
         return response.data ?? null;
     }
 );
@@ -45,7 +46,7 @@ export const fetchEvent = createAsyncThunk(
 export const postEvent = createAsyncThunk(
     "todo/postEvent",
     async (td: Partial<EventType>, { dispatch }) => {
-        const response = await axios.post("/api/event/", td);
+        const response = await axios.post(BACKEND_URL+"/api/event/", td);
         dispatch(eventActions.addEvent(response.data));
     }
 );
