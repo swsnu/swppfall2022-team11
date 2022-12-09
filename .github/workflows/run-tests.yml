@@ -36,40 +36,40 @@ jobs:
         path-to-lcov: ./backend/coverage.lcov
         flag-name: Backend
 
-  # frontend-test:
-  #   name: Frontend Test
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: frontend
-  #   steps:
-  #   - uses: actions/checkout@v3
+  frontend-test:
+    name: Frontend Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+    - uses: actions/checkout@v3
 
-  #   - name: Use Node.js 16.x
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: 16.x
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
 
-  #   - name: npm install
-  #     run: |
-  #       npm install
-  #       npm run test -- --coverage
+    - name: npm install
+      run: |
+        npm install
+        npm run test -- --coverage
 
-  #   - name: Coveralls
-  #     uses: coverallsapp/github-action@master
-  #     with:
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
-  #       parallel: true
-  #       path-to-lcov: ./frontend/coverage/lcov.info
-  #       base-path: ./frontend
-  #       flag-name: Frontend
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        path-to-lcov: ./frontend/coverage/lcov.info
+        base-path: ./frontend
+        flag-name: Frontend
 
-  # coveralls_finish:
-  #   needs: [frontend-test, backend-test]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Coveralls Finished
-  #     uses: coverallsapp/github-action@master
-  #     with:
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
-  #       parallel-finished: true
+  coveralls_finish:
+    needs: [frontend-test, backend-test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
