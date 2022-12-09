@@ -169,14 +169,14 @@ export default function CreatePage() {
             <h1 className="mt-5 text-black font-semibold text-2xl">AI 큐피드가 쓴 편지</h1>
             <div className="mt-3 flex flex-row w-full px-5 justify-center">
               <textarea
-                className="border-2 border-gray-200 rounded w-full p-4"
+                className="border-2 border-gray-200 rounded w-full p-4 h-[1000px]"
                 value={generatedLetter}
                 readOnly
               />
             </div>
             <div className="mt-3 flex flex-row w-full justify-center">
               <button
-                onClick={() => navigate('/decorate', { state:{"text":generatedLetter ,"from":"create" }})}
+                onClick={() => navigate('/decorate', { state: { "text": generatedLetter, "from": "create" } })}
                 className="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-2 px-4 border border-gray-800 hover:border-transparent rounded">
                 편지지 꾸미고 수정하기
               </button>

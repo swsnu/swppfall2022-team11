@@ -1,16 +1,15 @@
 import Navigation from "../components/NavNotAuth";
 export default function MainPage() {
   return (
-    <>
+    <div className="w-full h-full flex flex-col">
       <Navigation />
-      <main className="relative w-full h-full">
+      <main className="relative w-full flex-1">
         <div className="absolute top-0 w-full h-full bg-center bg-cover"
           style={{
             'backgroundImage': "url(/background.jpg)"
           }}>
           <span className="w-full h-full absolute opacity-60 bg-black"></span>
         </div>
-
         <div className="relative flex flex-col items-center justify-center h-full pb-10">
           <div className="w-full px-4 text-center">
             <h1 className="text-gray-200 font-semibold text-xl lg:text-5xl">
@@ -23,10 +22,11 @@ export default function MainPage() {
               AI로 감동적인 연애편지를 써보세요.
             </p>
           </div>
-          <a href="/login" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">로그인하기</a>
-          <a href="/register" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
+          <div className="flex">
+            <a href="/create" className="rounded-xl text-lg lg:text-3xl p-4 lg:p-8 bg-gray-200 mt-20 text-gray-600 font-semibold">지금 시작하기</a>
+          </div>
         </div>
       </main>
-    </>
+    </div>
   )
 }

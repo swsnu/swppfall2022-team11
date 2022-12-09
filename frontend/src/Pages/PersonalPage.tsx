@@ -23,9 +23,9 @@ function FlipCard(props: { name: string }) {
           </div>
           <div className="flip-card-back  text-center relative flex flex-col items-center justify-center2">
 
-            <a onClick={() => navigate('/craate', { state:{"name":props.name}  })} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
-            <a onClick={() => navigate('/decorate', { state:{"name":props.name,"text":"","from":"userpage"}})} className="rounded-xl text-lg  lg:p-4 mt:5 p-5 bg-gray-200 text-gray-600 font-semibold">편지수정하기</a>
-            <a onClick={() => navigate('/gift', { state:props.name  })} className="rounded-xl text-lg  lg:p-4 mt:5  p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
+            <a onClick={() => navigate('/create', { state: { "name": props.name } })} className="hover:cursor-pointer mb-1 rounded-xl text-lg  lg:p-4  p-5 bg-gray-200 text-gray-600 font-semibold">편지쓰기</a>
+            <a onClick={() => navigate('/decorate', { state: { "name": props.name, "text": "", "from": "userpage" } })} className="hover:cursor-pointer mb-1 rounded-xl text-lg  lg:p-4 p-5 bg-gray-200 text-gray-600 font-semibold">편지수정하기</a>
+            <a onClick={() => navigate('/gift', { state: props.name })} className="hover:cursor-pointer rounded-xl text-lg  lg:p-4 p-5 bg-gray-200 text-gray-600 font-semibold">선물사러가기</a>
           </div>
         </div>
       </div>
@@ -38,12 +38,12 @@ export default function PersonalPage() {
 
   const userState = useSelector(selectUser);
   const dispatch = useDispatch<AppDispatch>();
-  let upcoming =[];
+  let upcoming = [];
 
   useEffect(() => {
     dispatch(fetchUserInfo());
-    userState.user.Anniversary.map((d)=> upcoming.push({"name":d.name , "date": d.date}));
-    
+    userState.user.Anniversary.map((d) => upcoming.push({ "name": d.name, "date": d.date }));
+
 
   }, []);
 
@@ -61,7 +61,7 @@ export default function PersonalPage() {
           }}>
           <span className="w-full h-full absolute opacity-60 bg-black"></span>
           <h1 className="relative flex flex-col items-center text-gray-200 font-semibold text-xl lg:text-5xl">
-            안녕하세요 주환님
+            안녕하세요
           </h1>
         </div>
 
@@ -73,12 +73,11 @@ export default function PersonalPage() {
               {listCard}
             </div>
           </div>
-          <button onClick={ ()=>{ return 1}}> 기념일추가하기</button>
         </div>
-        
 
 
-    
+
+
 
 
 

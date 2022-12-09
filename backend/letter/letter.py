@@ -43,7 +43,7 @@ prompt_template = '''\
 ###
 
 '''
-def generate_text(letter_type: str, feel: str, voice: str):
+def kogpt_generate_text(letter_type: str, feel: str, voice: str):
     prompt = prompt_template + f'{feel} 말투로 {voice}로 여자친구에게 보내는 {letter_type}:'
 
     generated_texts = kogpt_api(
@@ -56,3 +56,17 @@ def generate_text(letter_type: str, feel: str, voice: str):
     logger.error(f"prompt: {prompt} generated_texts: {generated_texts}")
 
     return generated_texts['generations'][0]['text'].split('###')[0]
+
+
+def generate_text(letter_type: str, feel: str, voice: str):
+    completions_url = "https://api.openai.com/v1/completions"
+    prompt = prompt_template + f'{feel} 말투로 {voice}로 여자친구에게 보내는 {letter_type}:'
+
+    input_json = {"model": "text-davinci-003", "prompt": prompt, "temperature": 0, "max_tokens": 600}
+    headers = {
+        "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"
+    }
+
+    response = requests.post(completions_url, headers=headers, json=input_json)
+    response.raise_for_status()
+    return response.json()['choices'][0]['text'].split('###')[0]
