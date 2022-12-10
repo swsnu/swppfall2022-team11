@@ -13,4 +13,9 @@ describe("<LoginPage />", () => {
     it("should render without errors", () => {
         renderWithProviders(<LoginPage />);
     })
+    it("should push login", () => {
+        renderWithProviders(<LoginPage />);
+        const loginButton = screen.queryByText(/^로그인$/i)
+        loginButton && fireEvent.click(loginButton)
+    })
 })
