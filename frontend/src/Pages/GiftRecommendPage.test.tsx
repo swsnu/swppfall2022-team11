@@ -103,11 +103,11 @@ describe("<GiftRecommendPage />", () => {
             </Provider>
         )
     });
-    it("should render GiftRecommendPage", () => {
+    it("should render GiftRecommendPage", async() => {
         const { container } = render(giftRecommendPage);
         expect(container).toBeTruthy()
     })
-    it("should search button", () => {
+    it("should search button", async() => {
         render(giftRecommendPage);
         const searchButton = screen.getByText("전체보기")
         fireEvent.click(searchButton!);
@@ -120,6 +120,5 @@ describe("<GiftRecommendPage />", () => {
         const searchButton4 = screen.getByText("10만원~")
         fireEvent.click(searchButton4!);
         fireEvent.click(searchButton!);
-        
     })
 })
