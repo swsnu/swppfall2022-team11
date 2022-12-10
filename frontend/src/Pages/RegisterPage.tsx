@@ -38,7 +38,6 @@ export default function RegisterPage() {
       const enterednn = lovernicknameInputRef.current!.value;
       const enteredlg = lovergenderInputRef.current!.value;
       const enteredla = loverageInputRef.current!.value;
-      console.log("enteredemail:", enteredemail)
 
       if (enteredemail != null && enteredpw != null) {
         const response = await Axios.post(BACKEND_URL + "/user/register/", {
@@ -47,7 +46,6 @@ export default function RegisterPage() {
           , "loverage": enteredla, "lovergender": enteredlg
         }
         );
-        console.log(response.status)
         if (response.status == 201) {
           alert("회원가입이 완료되었습니다");
           navigate('/userpage');
