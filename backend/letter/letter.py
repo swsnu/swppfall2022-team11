@@ -5,23 +5,24 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def kogpt_api(prompt, max_tokens = 1, temperature = 1.0, top_p = 1.0, n = 1):
+def kogpt_api(prompt, max_tokens=1, temperature=1.0, top_p=1.0, n=1):
     response = requests.post(
         'https://api.kakaobrain.com/v1/inference/kogpt/generation',
-        json = {
+        json={
             'prompt': prompt,
             'max_tokens': max_tokens,
             'temperature': temperature,
             'top_p': top_p,
             'n': n,
         },
-        headers = {
+        headers={
             'Authorization': 'KakaoAK ' + os.environ.get('KAKAO_API_KEY', ''),
             'Content-Type': 'application/json'
         }
     )
     response.raise_for_status()
     return response.json()
+
 
 prompt_template = '''\
 진중하고 달달한 말투로 여자친구에게 보내는 100일 기념 편지:
@@ -43,15 +44,17 @@ prompt_template = '''\
 ###
 
 '''
+
+
 def kogpt_generate_text(letter_type: str, feel: str, voice: str):
     prompt = prompt_template + f'{feel} 말투로 {voice}로 여자친구에게 보내는 {letter_type}:'
 
     generated_texts = kogpt_api(
-        prompt = prompt,
-        max_tokens = 128,
-        temperature = .7,
-        top_p = .9,
-        n = 1
+        prompt=prompt,
+        max_tokens=128,
+        temperature=.7,
+        top_p=.9,
+        n=1
     )
     logger.error(f"prompt: {prompt} generated_texts: {generated_texts}")
 
@@ -62,9 +65,10 @@ def generate_text(letter_type: str, feel: str, voice: str):
     completions_url = "https://api.openai.com/v1/completions"
     prompt = prompt_template + f'{feel} 말투로 {voice}로 여자친구에게 보내는 {letter_type}:'
 
-    input_json = {"model": "text-davinci-003", "prompt": prompt, "temperature": 0, "max_tokens": 600}
+    input_json = {"model": "text-davinci-003",
+                  "prompt": prompt, "temperature": 0, "max_tokens": 600}
     headers = {
-        "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"
+        "Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', '')}"
     }
 
     response = requests.post(completions_url, headers=headers, json=input_json)

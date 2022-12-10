@@ -7,11 +7,7 @@ import { AppDispatch } from "../store";
 
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 import Navigation from "../components/Navigation";
-import { autocompleteClasses } from "@mui/material";
-import { grey } from "@mui/material/colors";
 
 const OPTIONS = [
     { value: 10, name: "10" },
@@ -62,10 +58,9 @@ export default function DecoratePage(): React.ReactElement {
     const userState = useSelector(selectUser);
     const dispatch = useDispatch<AppDispatch>();
 
-
     useEffect(() => {
         dispatch(fetchUserInfo());
-        if (state["from"] == "userpage") {
+        if (state && state["from"] == "userpage") {
 
             userState.user.Anniversary.map((anniv) => {
                 if (anniv.name == state["name"]) {
@@ -74,40 +69,19 @@ export default function DecoratePage(): React.ReactElement {
             })
         }
         else {
-
             const text = state == null ? "우리가 만난게 엊그제 같은데 벌써 100일이나 됐네? \n 처음 너를 봤을 때가 생각나.어떻게 저렇게 예쁜 애가 있나? 설레었어.너의 그 환한 웃음이 너무 좋았어." : state["from"] == "create" ? state["text"] : "로딩중"
             settext(text)
-
-
         }
-
-
     }, []);
-
-    const showPreview = () => {
-        setpreviewmode(true);
-    }
-
-    const Save = () => {
-
-        return 1;
-    }
-
-
-
-
     if (previewmode == false) {
         return (
-
             <div className="flex flex-col justify-center items-center">
                 <Navigation />
                 <div className="mt-10 bg-gray-200 w-full max-w-lg p-10 rounded-xl" >
                     <h1 style={{ fontSize: 24, fontFamily: "Kkomi", margin: 30, textAlign: "center" }}>이제 편지를 함께 꾸며보아요</h1>
-
                     <div className="textheader">
                         <h2>폰트와 크기 배경을 골라주세요</h2>
                     </div>
-
                     <div className="choose-bar rounded p-2">
                         <SelectBox options={OPTIONS} defaultValue={20} selecthandler={setfontsize}></SelectBox>
 
@@ -119,38 +93,15 @@ export default function DecoratePage(): React.ReactElement {
                             {lettertext}
                         </p>
                     </div>
-
-                    {/* <div className="btn-group" >
-                        <button onClick={() => showPreview()}>Preview</button>
-                        <button onClick={() => { setpreviewmode(false) }}>Edit</button>
-                        <button >저장하기</button>
-                    </div> */}
-
                 </div>
-
             </div>
         )
     }
-
     return (
-
         <>
             <Navigation />
             <div className="full" style={{ width: 500, backgroundColor: "white", margin: "auto" }}>
-
-
-                {/* <div className="btn-group" >
-        <button onClick={()=>showPreview()}>Preview</button>
-        <button onClick={()=>{setpreviewmode(false)}}>Edit</button>
-        <button onClick={()=>Save()}>저장하기</button>
-        </div>     */}
-
             </div>
-
         </>
     )
-
-
-
-
 }

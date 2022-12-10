@@ -12,16 +12,20 @@ describe("event reducer", () => {
     const fakeEvent = {
         id: 0,
         title: "크리스마스",
+        gift: false,
+        letter: false,
         date: new Date("December 25, 2022"),
     };
     const fakeEvent2 = {
         id: 1,
         title: "새해",
+        gift: false,
+        letter: false,
         date: new Date("January 1, 2023"),
     };
 
     beforeAll(() => {
-        store = configureStore({ reducer: { event: reducer }, middleware: [thunk] as [ThunkMiddleware]});
+        store = configureStore({ reducer: { event: reducer }, middleware: [thunk] as [ThunkMiddleware] });
     });
     it("should handle initial state", () => {
         expect(reducer(undefined, { type: "unknown" })).toEqual({
