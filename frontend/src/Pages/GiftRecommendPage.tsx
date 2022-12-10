@@ -17,7 +17,6 @@ const GiftRecommendPage = () => {
   const [keywordCategory, setKeywordCategory] = useState('All')
   const [keywordList, setKeywordList] = useState([])
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const GiftRecommendPage = () => {
     try {
       setError(false);
       setKeywordList([]);
-      setLoading(true);
       const paylaod = { 'category_id': keywordCategory, 'age_gender': keywordAge }
       const response = await axios.post(BACKEND_URL + "/gift/shop_keyword/", paylaod);
       setKeywordList(response.data)
@@ -41,10 +39,8 @@ const GiftRecommendPage = () => {
     catch (e) {
       setError(true)
     }
-    setLoading(false);
   }
 
-  if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
 
   return (
