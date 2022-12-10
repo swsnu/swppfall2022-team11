@@ -20,8 +20,6 @@ def shop_keyword(request):
         body = eval(body)
         age_gender = body["age_gender"]
         category_id = body["category_id"]
-        print(body)
-        print(age_gender)
         url = f'https://search.shopping.naver.com/best/category/keyword?categoryCategoryId={category_id}&categoryDemo={age_gender}&categoryRootCategoryId={category_id}&chartRank=1&period=P1D'
 
         headers = { 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6,zh;q=0.5',
