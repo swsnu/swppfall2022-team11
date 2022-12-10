@@ -71,8 +71,6 @@ class GenerateUnitTest(TestCase):
             self.assertEqual(kogpt_generate_text(
                 'letter-type', 'feel', 'voice'), 'Iloveyou')
 
-
-class GenerateUnitTest(TestCase):
     def test_generate_text(self):
         response_mock = unittest.mock.MagicMock()
         response_mock.json.return_value = {
