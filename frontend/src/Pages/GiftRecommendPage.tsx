@@ -109,14 +109,17 @@ const GiftRecommendPage = () => {
         </div>
 
         <table className="mt-5 shadow-lg bg-transparent border-collapse max-w-lg w-full">
-          <tr>
-            <th className="bg-gray-100 border border-gray-400 text-left px-8 py-4">랭킹</th>
-            <th className="bg-gray-100 border border-gray-400 text-left px-8 py-4">선물 키워드</th>
-          </tr>
-          {keywordList.map((keyword, index) => (<tr key={`${index}-${keyword}`}>
-            <td className="border border-gray-400 px-8 py-4">{index}</td>
-            <td className="border border-gray-400 px-8 py-4">{keyword}</td>
-          </tr>))}
+          <tbody>
+            <tr>
+              <th className="bg-gray-100 border border-gray-400 text-left px-8 py-4">랭킹</th>
+              <th className="bg-gray-100 border border-gray-400 text-left px-8 py-4">선물 키워드</th>
+            </tr>
+            {keywordList.map((keyword, index) => (<tr key={`${index}-${keyword}`}>
+              <td className="border border-gray-400 px-8 py-4">{index}</td>
+              <td className="border border-gray-400 px-8 py-4">{keyword}</td>
+            </tr>
+            ))}
+          </tbody>
         </table>
         <hr className="mt-5 border-b border-black w-full" />
         <h1 className="mt-5 text-center mt-15 mb-15 text-xl font-bold text-gray-600">운영자가 직접 큐레이팅한 선물 목록</h1>

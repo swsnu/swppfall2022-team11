@@ -106,14 +106,14 @@ describe("<CreateLetterPage />", () => {
         const generatedText = screen.queryByText(/iloveyou/i)
         expect(generatedText).toBeInTheDocument()
 
-        const decoratePageButton = screen.queryByText(/편지지 꾸미기/i)
+        const decoratePageButton = screen.queryByText(/편지지 꾸미고 수정하기/i)
         expect(decoratePageButton).toBeInTheDocument()
 
         const giftPageButton = screen.queryByText(/선물 추천/i)
         expect(giftPageButton).toBeInTheDocument()
 
         decoratePageButton && fireEvent.click(decoratePageButton)
-        expect(mockNavigate).toHaveBeenCalledWith("/decorate", { state: { text: "iloveyou" } })
+        expect(mockNavigate).toHaveBeenCalledWith("/decorate", { state: { text: "iloveyou", "from": "create" } })
 
         giftPageButton && fireEvent.click(giftPageButton)
         expect(mockNavigate).toHaveBeenCalledWith("/gift")
