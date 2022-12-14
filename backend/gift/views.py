@@ -24,7 +24,7 @@ def gift_list(request):
         raw = requests.get(url=url, headers=headers)
         html = BeautifulSoup(raw.text, 'html.parser')
         gift = []
-        for i in range(2, 61):
+        for i in range(2, 21):
             img = html.select_one(f'#content > div > div._1rlmqfkmSs > div > ul > li:nth-child({i}) > div > div.gp3TgRTw_E > img')['src']
             price = html.select_one(f'#content > div > div._1rlmqfkmSs > div > ul > li:nth-child({i}) > div > div._1OqXul1sMG > div > span').get_text()
             name = html.select_one(f'#content > div > div._1rlmqfkmSs > div > ul > li:nth-child({i}) > div > div._1OqXul1sMG > strong').get_text()
@@ -51,7 +51,8 @@ def gift_list(request):
             price = int(price.replace(',',''))
             link = html.select_one(f'#content > div > div._1rlmqfkmSs > div > ul > li:nth-child({i}) > div > a')['href']
             data = {"img":img, "name":name, "price":price, "link":link}
-            gift.append(data)        
+            gift.append(data)
+        random.shuffle(gift)        
 
         
         return JsonResponse(gift, safe=False)
