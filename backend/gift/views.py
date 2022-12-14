@@ -18,7 +18,7 @@ def gift_list(request):
         url1 = 'https://m.shopping.naver.com/gift/plans/641486?first=7681567774&NaPm=ct%3Dlbmie4e0%7Cci%3Dshoppingwindow%7Ctr%3Dgifth%7Chk%3De49a2edb77689348a8eb9bbfe1b514212350de02%7Ctrx%3D'
         url2 = 'https://m.shopping.naver.com/gift/plans/641486?first=5866760828&NaPm=ct%3Dlbmigf84%7Cci%3Dshoppingwindow%7Ctr%3Dgifth%7Chk%3Dd4dcd75040c1f2b65fcd1fe82ae7bfccb28efbb3%7Ctrx%3D'
         headers = { 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6,zh;q=0.5',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
             'Accept-Encoding': 'gzip'
         }
         raw = requests.get(url=url, headers=headers)
@@ -67,7 +67,7 @@ def shop_keyword(request):
         url = f'https://search.shopping.naver.com/best/category/keyword?categoryCategoryId={category_id}&categoryDemo={age_gender}&categoryRootCategoryId={category_id}&chartRank=1&period=P1D'
 
         headers = { 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6,zh;q=0.5',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15',
             'Accept-Encoding': 'gzip'
         }
 
