@@ -100,7 +100,7 @@ const GiftRecommendPage = () => {
           {selectCategory}
         </div>
         <div>
-          <button className="mt-5 bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded" onClick={fetchKeywords}>불러오기</button>
+          <button className="mt-5 bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded" onClick={()=>{window.open(`https://search.shopping.naver.com/best/category/keyword?categoryCategoryId=${keywordCategory}&categoryDemo=${keywordAge}&categoryRootCategoryId=${keywordCategory}&chartRank=1&period=P1D`)}}>불러오기</button>
         </div>
 
         <table className="mt-5 shadow-lg bg-transparent border-collapse max-w-lg w-full">
