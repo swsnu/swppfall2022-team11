@@ -131,7 +131,7 @@ const GiftRecommendPage = () => {
         </div>
         <hr className="mt-5 border-b border-black w-full" />
 
-        <h1 className="mt-5 text-center mt-15 mb-15 text-xl font-bold text-gray-600">크리스마스에 어울리는 선물 목록</h1>
+        <h1 className="mt-5 text-center mt-15 mb-15 text-xl font-bold text-gray-600">연말에 어울리는 선물 목록</h1>
 
         <div className="mt-5 inline-flex rounded-md shadow-sm mt-5" role="group">
           <button onClick={() => setSearchPrice(1)} type="button" className="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
