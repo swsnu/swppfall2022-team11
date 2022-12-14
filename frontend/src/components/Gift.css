@@ -11,7 +11,7 @@ body h1 {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: 740px;
+    width: 33%;
     text-align: center;
 }
 
@@ -25,7 +25,7 @@ body h1 {
 .products a {
     text-decoration: none;
     color: black;
-    float: left;
+    float: center;
     font-size: 16px;
 }
 

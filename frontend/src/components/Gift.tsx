@@ -10,7 +10,6 @@ interface IProps {
 
 const Gift = (props: IProps) => {
     return (
-        <div>
             <div className="products">
                 <a href={props.link}>
                     <img src={props.img}></img>
@@ -18,7 +17,6 @@ const Gift = (props: IProps) => {
                     <p className='price'>{props.price}원</p>
                 </a>
             </div>
-        </div>
     )
 }
 
