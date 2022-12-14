@@ -31,10 +31,9 @@ const GiftRecommendPage = () => {
 
   const fetchKeywords = async () => {
       setKeywordList([]);
-      const paylaod = { 'category_id': keywordCategory, 'age_gender': keywordAge }
+      const paylaod = { category_id: keywordCategory, age_gender: keywordAge }
       const response = await axios.post(BACKEND_URL + "/gift/shop_keyword/", paylaod);
       setKeywordList(response.data)
-
   }
 
   return (
