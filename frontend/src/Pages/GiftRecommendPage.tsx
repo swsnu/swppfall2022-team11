@@ -16,7 +16,6 @@ const GiftRecommendPage = () => {
   const [keywordAge, setKeywordAge] = useState('A00')
   const [keywordCategory, setKeywordCategory] = useState('All')
   const [keywordList, setKeywordList] = useState([])
-  const [error, setError] = useState(false);
   const [selectAge, setSelectAge] = useState('')
   const [selectCategory, setSelectCategory] = useState('')
 
@@ -31,19 +30,12 @@ const GiftRecommendPage = () => {
 
 
   const fetchKeywords = async () => {
-    try {
-      setError(false);
       setKeywordList([]);
       const paylaod = { 'category_id': keywordCategory, 'age_gender': keywordAge }
       const response = await axios.post(BACKEND_URL + "/gift/shop_keyword/", paylaod);
       setKeywordList(response.data)
-    }
-    catch (e) {
-      setError(true)
-    }
-  }
 
-  if (error) return <div>에러가 발생했습니다</div>;
+  }
 
   return (
     <>
